@@ -1,0 +1,36 @@
+/* =========================================
+   THEME PAGE BACKGROUNDS
+   Mustang / Misty / Aqua — matches BizX screenshots
+========================================= */
+
+body.mustang .contenterHead {
+  background-color: #8a9bab;
+  background-image: url(https://bizx.infinite.com/dist/assets/images/module_images/mustang_backdrop-2.jpg);
+}
+
+body.misty .contenterHead {
+  background-color: #2b1245;
+  background-image:
+    /* linear-gradient(135deg, rgba(43, 18, 69, 0.82), rgba(74, 40, 112, 0.78)), */
+    url(C:\react\bizxsystem\public\misty.jpg);
+}
+
+body.aqua .contenterHead {
+  background-color: #dfe9ef;
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(223, 243, 255, 0.45)),
+    url(C:\react\bizxsystem\public\Back-drop.jpg);
+}
+
+/* White content cards on all inner pages */
+body.mustang .leave-card,
+body.misty .leave-card,
+body.aqua .leave-card,
+body.mustang .profile-container,
+body.misty .profile-container,
+body.aqua .profile-container {
+  background:white !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+

@@ -1,0 +1,123 @@
+/* =========================================
+   PROFILE PAGE — matches BizX screenshot
+========================================= */
+
+.profile-page {
+  min-height: calc(100vh - 45px);
+  padding: 0;
+  display: flex;
+  justify-content: center;
+      margin-top: -35px;
+
+}
+
+.profile-container {
+  width: 100%;
+  max-width: 100%;
+  min-height: 80vh;
+  margin-top: 3.8%;
+  background: rgba(255, 255, 255, 0.88);
+  color: inherit;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+  padding: 20px 30px 30px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+  border-bottom: 2px solid #1b2330;
+  margin-bottom: 30px;
+}
+
+.profile-header h2 {
+  color: #1b2330;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0;
+  padding-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.profile-card {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.profile-left {
+  width: 220px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-top: 10px;
+}
+
+.profile-image {
+  font-size: 90px;
+  color: #b0b0b0;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.profile-left h3 {
+  color: #d97d2e;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.profile-right {
+  flex: 1;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px 20px;
+}
+
+.profile-item label {
+  display: block;
+  color: #6c6c6c;
+  font-weight: 600;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.profile-item p {
+  color: #111;
+  font-size: 12px;
+  margin: 0;
+  word-break: break-word;
+}
+
+.active-status {
+  color: #2e7d32 !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+}
+
+@media (max-width: 992px) {
+  .profile-card {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .profile-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-container {
+    padding: 15px;
+  }
+}

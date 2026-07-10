@@ -1,0 +1,126 @@
+/* =========================================
+   BIZX RESPONSIVE — React migration
+========================================= */
+
+@media (min-width: 1200px) and (max-height: 849px) and (min-height: 700px) {
+  .contenterHead,
+  .main-container.contenterHead {
+    padding: 26px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mat-card,
+  .card.bizx-page-card {
+    min-height: 517px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 979px) {
+  .projectAccounting .mat-card-content,
+  .projectAccounting .card-body {
+    min-height: 25vh !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .projectAccounting .mat-card-content,
+  .projectAccounting .card-body {
+    min-height: 36vh !important;
+  }
+
+  mat-card.dashBG,
+  .card.dashBG {
+    margin-top: 45px;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .projectAccounting .mat-card-content,
+  .projectAccounting .card-body {
+    min-height: 36vh !important;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .signIn-container .bixLogo img {
+    width: 60% !important;
+  }
+
+  .bixAppsLogo img {
+    width: 26%;
+  }
+
+  .mat-elevation-z8,
+  .table-responsive.bizx-scroll {
+    overflow-x: scroll !important;
+  }
+
+  .mat-mdc-cell,
+  .mat-mdc-header-cell,
+  .table td,
+  .table th {
+    flex: 1;
+    overflow: visible !important;
+    word-wrap: normal !important;
+  }
+
+  mat-card .mat-table,
+  .card .table {
+    width: auto !important;
+  }
+
+  .mat-mdc-paginator-page-size,
+  .mat-mdc-paginator-range-actions {
+    display: block !important;
+  }
+
+  .bixAppsLogo {
+    left: 45% !important;
+  }
+
+  button.modle-selct-btn.mat-mdc-button {
+    display: none;
+  }
+
+  .dashboardList-header .LftRecutritFilterArea.col-xs {
+    width: 100%;
+  }
+
+  .dashboardList-header .dashFilterArea {
+    width: 100%;
+    padding-left: 12px;
+    text-align: left;
+  }
+
+  .new-SR-Block-Main .new-SR-Block-Main .depMainName {
+    width: 100%;
+  }
+
+  .projectAccounting .mat-card-content,
+  .projectAccounting .card-body {
+    min-height: 36vh !important;
+  }
+}
+
+/* 125% zoom */
+@media (min-width: 1200px) and (max-height: 849px) and (min-height: 700px) {
+  .projectAccounting .RitFilterArea {
+    width: 65%;
+  }
+
+  .projectAccounting .paginator-field {
+    width: 30%;
+  }
+}
+
+/* 150% zoom */
+@media (min-width: 1200px) and (max-height: 699px) {
+  .projectAccounting .RitFilterArea {
+    width: 57%;
+  }
+
+  .projectAccounting .paginator-field {
+    width: 42%;
+  }
+}

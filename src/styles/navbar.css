@@ -1,0 +1,1564 @@
+
+
+
+/* =========================================
+   ROOT VARIABLES — DEFAULT (AQUA-LIKE BASE)
+========================================= */
+
+:root {
+
+        --table-header-bg:#384967;
+    --table-header-color:#ffffff;
+    --body-bg: #eef4fc;
+    --border: rgba(0, 0, 0, 0.09);
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+
+    --left-panel-bg: #1565c0;
+    --left-panel-color: #ffffff;
+
+    --section-title-bg: #0d47a1;
+
+    --home-cont-bg: rgba(255, 255, 255, 0.80);
+
+    --right-panel-bg: #ffffff;
+    --right-panel-color: #0d1a2a;
+
+    --link-bg: rgba(255, 255, 255, 0.18);
+    --link-hover-bg: rgba(255, 255, 255, 0.35);
+    --link-hover-text: #ffffff;
+    --link-color: #d8eeff;
+    --link-border: rgba(255, 255, 255, 0.18);
+
+    --option-bg: #e3f0ff;
+    --option-hover: #1565c0;
+    --option-text: #0d47a1;
+    --option-hover-text: #ffffff;
+}
+
+/* =========================================
+   BODY
+========================================= */
+
+body {
+    margin: 0;
+    padding: 0;
+    background: var(--body-bg);
+    color: #0d1a2a;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    transition: background 0.4s ease, color 0.4s ease;
+     
+
+}
+
+/* =========================================
+   MUSTANG THEME — Dark Navy Uniform Tiles
+   (Screenshot 3: all tiles dark navy #2b405f,
+    white icons, dark slate left/right panels)
+========================================= */
+
+/* body.mustang {
+    --page-bg: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    --body-bg: rgba(232, 239, 247, 0.48);
+    --border: rgba(255, 255, 255, 0.08);
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    --section-title-bg: #1b2330;
+
+    --left-panel-bg: #2c3e50;
+    --left-panel-color: #ffffff;
+
+    --right-panel-bg: #2c3e50;
+    --right-panel-color: #ffffff;
+
+    --home-cont-bg: rgba(232, 239, 247, 0.48);
+
+    --link-bg: rgba(255, 255, 255, 0.06);
+    --link-hover-bg: rgba(255, 255, 255, 0.14);
+    --link-hover-text: #ffffff;
+    --link-color: #c8d8e8;
+    --link-border: rgba(255, 255, 255, 0.06);
+
+    --option-bg: rgba(232, 239, 247, 0.48);
+    --option-hover: rgba(255, 255, 255, 0.18);
+    --option-text: #ffffff;
+    --option-hover-text: #ffffff;
+} */
+
+/* Mustang tiles — uniform dark navy, white icons/text */
+
+
+/* 
+body.mustang .hr-partner-content .profile-content,
+body.mustang .hr-partner-content p,
+body.mustang .profile-content h5 {
+    background: rgba(232,239,247,0.48);
+    color: #1b2330;
+    padding: 4px 8px;
+    margin-bottom: 3px;
+}
+
+body.mustang .hr-partner-content .profile-content p {
+    background: transparent;
+    color: #1b2330;
+    padding: 0;
+    margin-bottom: 6px;
+}
+
+body.mustang .hr-partner-content .profile-content h5 {
+    background: rgba(232,239,247,0.48);
+    padding: 4px 8px;
+    margin-bottom: 0;
+} */
+
+
+body.mustang .profile-content,
+body.mustang .profile-content p,
+body.mustang .profile-content h5 {
+    color: #1b2330 !important;
+}
+
+body.mustang .profile-content {
+    background: rgba(232, 239, 247, 0.48) !important;
+    padding: 4px 8px;
+}
+
+body.mustang .profile-content p {
+    background: transparent !important;
+    padding: 0;
+    margin-bottom: 3px;
+}
+
+body.mustang .profile-content h5 {
+    background: transparent !important;
+    padding: 0;
+    margin-bottom: 3px;
+}
+
+body.mustang .hr-partner-content p:hover {
+    background: #2b405f;
+    color: #ffffff;
+}
+body.mustang .dashboard-tile {
+    background: #2b405f !important;
+    color: #ffffff !important;
+    border: 1px solid #3a5070 !important;
+}
+
+body.mustang .dashboard-tile:hover {
+   background: #1b2330 !important;
+    filter: brightness(1.1) !important;
+}
+
+body.mustang .dashboard-tile.active-tile {
+    background: #1b2330 !important;
+    box-shadow: inset 0 0 0 3px rgba(255,255,255,0.25) !important;
+}
+
+body.mustang .dashboard-tile span {
+    color: #ffffff !important;
+}
+
+body.mustang .tile-img {
+    filter: brightness(0) invert(1) !important;
+}
+
+body.mustang .home_cont_area {
+    background: transparent !important;
+    border: 2px solid #A4B3B6 !important;
+}
+
+body.mustang .dashboard-grid {
+    background: transparent !important;
+    border: none !important;
+}
+
+body.mustang .section-title {
+    background: #1b2330 !important;
+    color: #ffffff !important;
+}
+
+body.mustang .card-box {
+    background: #2c3e50 !important;
+    color: #ffffff !important;
+}
+/* 
+body.mustang .card-box *,
+body.mustang .profile-content,
+body.mustang .profile-content p,
+body.mustang .profile-content h5 {
+    color: #ffffff !important;
+    
+
+} */
+
+
+
+body.mustang .link-item {
+    background: rgba(232,239,247,0.48) !important;
+    color: #1b2330 !important;
+    border: none !important;
+    margin-bottom: 2px;
+}
+
+body.mustang .link-item:hover {
+    background: #2b405f !important;
+    color: #ffffff !important;
+}
+
+body.mustang .option-link {
+    background: rgba(232,239,247,0.48) !important;
+    color: #1b2330 !important;
+    margin-bottom: 2px !important;
+}
+
+body.mustang .option-link:hover {
+    background: #2b405f !important;
+    color: #ffffff !important;
+}
+
+body.mustang .option-link.active-option {
+    background: #1b2330 !important;
+    color: #ffffff !important;
+}
+
+body.mustang .right-panel {
+    background: #2b405f !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+body.mustang .right-panel *,
+body.mustang .right-panel-body {
+   
+    background: transparent;
+}
+
+/* =========================================
+   PANEL STRUCTURE — make Aqua/Misty right panels match Mustang
+   (structural: remove panel container borders/radius only)
+========================================= */
+
+body.aqua .right-panel,
+body.misty .right-panel {
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+body.aqua .right-panel-body,
+body.misty .right-panel-body {
+    background: transparent !important;
+}
+
+/* =========================================
+   MISTY THEME — Light Grey Tiles + Pink Icons
+   (Screenshot 2: light grey tiles, pink-hued icons,
+    purple left/right panels, dark purple section headers)
+========================================= */
+/* 
+body.misty {
+    --page-bg: linear-gradient(135deg, #2b1245, #4a2870, #6c4ab6);
+    --body-bg: rgba(214, 221, 222, 0.4);
+    --border: rgba(255, 255, 255, 0.14);
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    --section-title-bg: #2A1B3C;
+
+    --left-panel-bg: #8265A7;
+    --left-panel-color: #ffffff;
+
+    --right-panel-bg: #8265A7;
+    --right-panel-color: #ffffff;
+
+    --home-cont-bg: rgba(214, 221, 222, 0.4);
+
+    --link-bg: rgba(255, 255, 255, 0.12);
+    --link-hover-bg: rgba(255, 255, 255, 0.25);
+    --link-hover-text: #ffffff;
+    --link-color: #f0e8ff;
+    --link-border: rgba(255, 255, 255, 0.10);
+
+    --option-bg: #8265A7;
+    --option-hover: #9376b9;
+    --option-text: #ffffff;
+    --option-hover-text: #ffffff;
+} */
+
+/* Misty tiles — light grey background, dark purple text, pink icons */
+body.misty .dashboard-tile {
+    background: #ddd8ea !important;
+    color: #2a1050 !important;
+    border: 1px solid #c5bedd !important;
+}
+
+body.misty .dashboard-tile:hover {
+    background: #c9c2dc !important;
+    filter: brightness(1.02) !important;
+}
+
+body.misty .dashboard-tile.active-tile {
+    background: #c4a8e0 !important;
+    box-shadow: inset 0 0 0 2px rgba(130, 101, 167, 0.4) !important;
+}
+
+body.misty .dashboard-tile span {
+    color: #2a1050 !important;
+}
+
+/* Pink-tinted icons matching screenshot */
+/* body.misty .tile-img {
+    filter: invert(30%) sepia(80%) saturate(500%) hue-rotate(265deg) brightness(0.85) !important;
+} */
+
+body.misty .home_cont_area {
+    background: transparent !important;
+    border: 2px solid rgba(130, 101, 167, 0.3) !important;
+}
+
+body.misty .dashboard-grid {
+    background: rgba(214, 221, 222, 0.4) !important;
+    border: 1px solid rgba(130, 101, 167, 0.25) !important;
+}
+
+body.misty .section-title {
+    background: #2A1B3C !important;
+    color: #ffffff !important;
+}
+
+body.misty .card-box {
+    background: #8265A7 !important;
+}
+
+body.misty .card-box *,
+body.misty .profile-content,
+body.misty .profile-content p,
+body.misty .profile-content h5 {
+    color: #ffffff !important;
+    
+}
+
+body.misty .left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* background: #8265A7 !important; */
+    overflow: hidden !important;
+    backdrop-filter: blur(6px) !important;
+    box-shadow: var(--shadow) !important;
+    border-radius: 0 !important;
+}
+
+body.misty .left-panel .card-box {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+body.misty .link-item {
+    background: #8265A7 !important;
+    color: #ffffff !important;
+    border: none !important;
+    margin-bottom: 2px !important;
+    width: 100% !important;
+    display: block !important;
+    padding: 10px 16px !important;
+}
+
+body.misty .link-item:hover {
+    background: #A4B3B6 !important;
+    color: #ffffff !important;
+}
+
+body.misty .option-link {
+    background:  #A4B3B6 !important; 
+    color: #2A1B3C !important;
+    margin-bottom: 2px !important;
+    width: 100% !important;
+    display: block !important;
+    text-align: left !important;
+    border: none !important;
+}
+
+body.misty .option-link:hover {
+    background: rgb(42, 27, 60) !important;
+    color: #ffffff !important;
+}
+
+body.misty .option-link.active-option {
+    background: #2A1B3C !important;
+    color: #ffffff !important;
+}
+
+body.misty .right-panel {
+    background: #8265A7 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+body.misty .right-panel .card-box {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+body.misty .right-panel-body {
+    background: transparent !important;
+    padding: 0 !important;
+}
+
+/* =========================================
+   AQUA THEME — Colorful Individual Tiles
+   (Screenshot 1: each tile has own vivid color,
+    bright blue left panel, light right panel)
+========================================= */
+/* 
+body.aqua {
+    --page-bg: linear-gradient(135deg, #f8fcff, #edf8ff, #dff3ff, #ffffff);
+    --body-bg: #dfe9ef;
+    --border: rgba(0, 0, 0, 0.08);
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    --section-title-bg: #421bf1;
+
+    --left-panel-bg: rgb(33, 162, 253);
+    --left-panel-color: #ffffff;
+
+    --right-panel-bg: rgb(161, 198, 213);
+    --right-panel-color: #000000;
+
+    --home-cont-bg: rgba(255, 255, 255, 0.45);
+
+    --link-bg: rgba(255, 255, 255, 0.12);
+    --link-hover-bg: rgba(255, 255, 255, 0.24);
+    --link-hover-text: #ffffff;
+    --link-color: #ffffff;
+    --link-border: rgba(255, 255, 255, 0.12);
+
+    --option-bg: rgb(161, 198, 213);
+    --option-hover: #1565c0;
+    --option-text: #000000;
+    --option-hover-text: #ffffff;
+} */
+
+body.aqua .card-box {
+    /* background: #21a2fd !important; */
+    color: #ffffff !important;
+}
+
+body.aqua .profile-content,
+body.aqua .profile-content p,
+body.aqua .profile-content h5 {
+    color: #ffffff !important;
+        background-color: #21a2fd;
+}
+
+body.aqua .link-item {
+     background: #21a2fd !important; 
+    color: #ffffff !important;
+    border: none !important;
+    margin-bottom: 2px !important;
+}
+
+body.aqua .link-item:hover {
+    background:rgb(164, 179, 182) !important;
+    color: #ffffff !important;
+}
+
+body.aqua .right-panel {
+    background: rgb(161, 198, 213) !important;
+    color: #000000 !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+body.aqua .right-panel .card-box {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+}
+
+body.aqua .right-panel-body {
+    background: transparent !important;
+}
+
+body.aqua .right-panel,
+body.aqua .right-panel * {
+    color: #000000 !important;
+}
+
+body.aqua .option-link {
+    background: rgba(232, 239, 247, 0.48) !important;
+    color: #000000 !important;
+    border: none !important;
+    margin-bottom: 2px !important;
+}
+
+body.aqua .option-link:hover {
+    background: #66bce1 !important;
+    /* color: #ffffff !important; */
+    
+}
+
+body.aqua .option-link.active-option {
+    background: #421bf1 !important;
+    color: #ffffff !important;
+    box-shadow: 0 2px 6px rgba(66,27,241,0.35) !important;
+}
+
+body.aqua .section-title {
+    background: #421bf1 !important;
+    color: #ffffff !important;
+}
+
+body.aqua .home_cont_area {
+    background: transparent !important;
+    border: 1px solid #c7d0d5 !important;
+}
+
+/* Aqua tiles — individual vivid colors */
+body.aqua .dashboard-tile {
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+body.aqua .dashboard-tile span {
+    color: #ffffff !important;
+    font-size: 13px;
+   
+}
+
+body.aqua .tile-img {
+    filter: brightness(0) invert(1) !important;
+    width: 56px !important;
+    height: 56px !important;
+    display: block !important;
+    object-fit: contain !important;
+}
+
+body.aqua .dashboard-tile:hover {
+    
+    filter: brightness(1.08) !important;
+}
+
+body.aqua .dashboard-tile.active-tile {
+    filter: brightness(0.92) !important;
+    box-shadow: inset 0 0 0 3px rgba(255,255,255,0.35), 0 4px 10px rgba(0,0,0,0.18) !important;
+}
+
+/* Individual tile colors matching Screenshot 1 */
+body.aqua .dashboard-tile[data-tile="asset-management"]       { background: #00897b !important; }
+body.aqua .dashboard-tile[data-tile="elm"]                    { background: #4a1468 !important; }
+body.aqua .dashboard-tile[data-tile="brand-vault"]            { background: #0277bd !important; }
+body.aqua .dashboard-tile[data-tile="core-hr"]                { background: #f9a825 !important; }
+body.aqua .dashboard-tile[data-tile="covid-vaccination"]      { background: #5e7a6e !important; }
+body.aqua .dashboard-tile[data-tile="expense"]                { background: #1565c0 !important; }
+body.aqua .dashboard-tile[data-tile="incident-management"]    { background: #8d6e63 !important; }
+body.aqua .dashboard-tile[data-tile="infinite-horizons"]      { background: #512da8 !important; }
+body.aqua .dashboard-tile[data-tile="information-security"]   { background: #006064 !important; }
+body.aqua .dashboard-tile[data-tile="leave"]                  { background: #1976d2 !important; }
+body.aqua .dashboard-tile[data-tile="mis"]                    { background: #37474f !important; }
+body.aqua .dashboard-tile[data-tile="procurement"]            { background: #4a1468 !important; }
+body.aqua .dashboard-tile[data-tile="project"]                { background: #00838f !important; }
+body.aqua .dashboard-tile[data-tile="recruitment"]            { background: #ef6c00 !important; }
+body.aqua .dashboard-tile[data-tile="rootz"]                  { background: #6d4c41 !important; }
+body.aqua .dashboard-tile[data-tile="skill-pack"]             { background: #00838f !important; }
+body.aqua .dashboard-tile[data-tile="timesheet"]              { background: #1976d2 !important; }
+body.aqua .dashboard-tile[data-tile="travel"]                 { background: #e53935 !important; }
+body.aqua .dashboard-tile[data-tile="visa"]                   { background: #2e7d32 !important; }
+body.aqua .dashboard-tile[data-tile="service-management"]     { background: #37474f !important; }
+
+
+
+
+/* =========================================
+   NAVBAR BASE
+========================================= */
+
+.custom-navbar {
+    height: 40px;
+    padding: 0 12px;
+    position: relative;
+    z-index: 9999 !important;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    color: #ffffff;
+}
+
+
+/* =========================================
+   NAVBAR TEXT — always white
+========================================= */
+
+.custom-navbar,
+.custom-navbar .navbar-brand,
+.custom-navbar .icon-btn,
+.custom-navbar .user-btn,
+.custom-navbar .username-text,
+.custom-navbar .search-icon {
+    color: #ffffff;
+}
+
+/* =========================================
+   NAVBAR THEME COLORS
+========================================= */
+
+
+@-webkit-keyframes aquaGradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes aquaGradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* AQUA */
+body.aqua .navbar,
+body.aqua .custom-navbar {
+    background-color: #12baab !important;
+    background-image: linear-gradient(
+        135deg,
+        #12baab 0%,
+        #1f8ccf 20%,
+        #12baab 40%,
+        #0f62c8 60%,
+        #7d37bb 80%,
+        #338aff 100%
+    ) !important;
+    background-repeat: no-repeat !important;
+    background-position: 0% 50% !important;
+    background-size: 400% 400% !important;
+    -webkit-animation: aquaGradientFlow 14s ease-in-out infinite !important;
+    animation: aquaGradientFlow 14s ease-in-out infinite !important;
+    transition:
+        background .5s ease-in-out,
+        padding .5s ease-in-out !important;
+}
+
+
+/* MISTY */
+body.misty .navbar,
+body.misty .custom-navbar {
+    background: #2A1B3C !important;
+
+    box-shadow:
+        0 2px 5px 0 rgba(0,0,0,.16),
+        0 2px 10px 0 rgba(0,0,0,.12);
+
+    transition:
+        background .5s ease-in-out,
+        padding .5s ease-in-out !important;
+}
+
+/* MUSTANG */
+body.mustang .navbar,
+body.mustang .custom-navbar {
+    background: #1b2330 !important;
+
+    box-shadow:
+        0 2px 5px 0 rgba(0,0,0,.16),
+        0 2px 10px 0 rgba(0,0,0,.12);
+
+    transition:
+        background .5s ease-in-out,
+        padding .5s ease-in-out !important;
+}
+/* =========================================
+   LOGO
+========================================= */
+/* 
+.logo {
+    height: auto;
+    width: 75%;
+    object-fit: contain;
+} */
+
+/* =========================================
+   NAVBAR RIGHT SECTION
+========================================= */
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+}
+
+
+/* =========================================
+   SEARCH BOX
+========================================= */
+
+
+
+.search-box {
+  
+   height: 25px;
+    width: 200px;
+    padding: 5px 38px 5px 12px; /* space for icon */
+    border-radius: 2px;
+    border: 1px solid #ccc !important;
+    background-color: transparent;
+    color: white !important;
+    font-size: 14px;
+
+}
+
+/* Aqua search */
+body.aqua .search-box {
+    background: rgba(255, 255, 255, 0.28);
+    color: #ffffff;
+}
+
+body.aqua .search-box::placeholder {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+/* Misty search */
+body.misty .search-box {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+}
+
+body.misty .search-box::placeholder {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+/* Mustang search */
+body.mustang .search-box {
+    border-color: white;
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+body.mustang .search-box::placeholder {
+    color: rgba(255, 255, 255, 0.60);
+}
+
+/* Default placeholder */
+.search-box::placeholder {
+    color: rgba(255, 255, 255, 0.70);
+}
+
+/* =========================================
+   ICON & USER BUTTONS
+========================================= */
+
+.icon-btn,
+.user-btn {
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 4px 8px;
+    border-radius: 5px;
+    transition: background 0.2s;
+}
+
+.icon-btn:hover,
+.user-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* =========================================
+   DROPDOWN MENU — always white, dark text
+========================================= */
+
+.dropdown-menu {
+    z-index: 10000 !important;
+    background: #ffffff !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 6px !important;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18) !important;
+    min-width: 180px;
+}
+
+.dropdown-item {
+    color: #111111 !important;
+    padding: 9px 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    border-radius: 6px !important;
+    font-size: 14px;
+    transition: background 0.2s ease !important;
+    cursor: pointer;
+}
+
+.dropdown-item:hover {
+    background: #f2f2f2 !important;
+    color: #000000 !important;
+}
+
+/* Theme items inside dropdown */
+.theme-item {
+    color: #111111 !important;
+}
+
+/* Active/selected theme */
+.active-theme {
+    background: #e6f0ff !important;
+    color: #0d1a2a !important;
+    font-weight: 600 !important;
+}
+
+/* =========================================
+   THEME COLOR DOTS
+========================================= */
+
+.theme-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+/* Aqua dot — blue */
+.aqua-dot {
+    background: #1565c0;
+    border: 1px solid rgba(0,0,0,0.12);
+}
+
+/* Misty dot — pink/magenta */
+.misty-dot {
+    background: #c026d3;
+    border: 1px solid rgba(0,0,0,0.12);
+}
+
+/* Mustang dot — dark navy */
+.mustang-dot {
+    background: #1e3347;
+    border: 1px solid rgba(0,0,0,0.15);
+}
+
+/* =========================================
+   NAVBAR BASE
+========================================= */
+
+.navbar {
+
+    background: var(--nav-bg) !important;
+    height: 70px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: var(--shadow);
+
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+
+
+
+/* =========================================
+   NAVBAR BRAND
+========================================= */
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 0;
+    padding: 0;
+
+    color: #ffffff !important;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    white-space: nowrap;
+}
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo {
+    width: 60px;
+    /* height: 34px; */
+    object-fit: contain;
+}
+
+/* =========================================
+   RIGHT SECTION
+========================================= */
+
+/* .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+} */
+
+/* =========================================
+   SEARCH WRAPPER
+========================================= */
+
+.search-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* =========================================
+   SEARCH BOX
+========================================= */
+/* 
+.search-box,
+.navbar-search {
+    width: 210px;
+    height: 25px;
+
+    border-radius: 3px;
+
+    border: 1px solid rgba(255,255,255,0.30);
+
+    background: rgba(255,255,255,0.10);
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    padding-left: 12px;
+    padding-right: 40px;
+
+    outline: none;
+    box-shadow: none;
+
+    transition: all 0.3s ease;
+} */
+
+.search-box:focus,
+.navbar-search:focus {
+    background: rgba(255,255,255,0.18);
+    border-color: rgba(255,255,255,0.70);
+}
+
+/* =========================================
+   PLACEHOLDER
+========================================= */
+
+.search-box::placeholder,
+.navbar-search::placeholder {
+    color: rgba(255,255,255,0.85);
+}
+
+/* =========================================
+   SEARCH ICON
+========================================= */
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    pointer-events: auto;
+    
+}
+
+
+
+.search-icon i {
+    font-size: 14px;
+    line-height: 1;
+}
+
+
+/* =========================================
+   ACCOUNT BUTTON
+========================================= */
+
+.account-btn {
+    height: 42px;
+
+    padding: 0 16px;
+
+    border-radius: 8px;
+
+    border: 1px solid rgba(255,255,255,0.15);
+
+    background: rgba(255,255,255,0.10);
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.account-btn:hover {
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-1px);
+}
+
+/* =========================================
+   ACCOUNT ICON
+========================================= */
+
+.account-btn i {
+    font-size: 15px;
+}
+
+/* =========================================
+   ICON BUTTONS
+========================================= */
+
+.icon-btn,
+.menu-btn {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 8px;
+
+    /* border: 1px solid rgba(255,255,255,0.15); */
+
+   
+
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: all 0.25s ease;
+}
+
+.icon-btn:hover,
+.menu-btn:hover {
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-1px);
+}
+
+.icon-btn i,
+.menu-btn i {
+    font-size: 18px;
+}
+
+/* =========================================
+   DROPDOWN
+========================================= */
+
+.custom-dropdown {
+    min-width: 220px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    padding: 6px 0;
+
+    box-shadow:
+        0 8px 24px rgba(0,0,0,0.18);
+
+    backdrop-filter: blur(10px);
+}
+
+/* =========================================
+   DROPDOWN ITEM
+========================================= */
+
+.custom-dropdown .dropdown-item {
+    padding: 12px 16px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 14px;
+
+    transition: all 0.25s ease;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        height: auto;
+        padding: 12px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+  
+
+    .search-box,
+    .navbar-search {
+        width: 100%;
+        max-width: 260px;
+    }
+
+    .navbar-brand {
+        font-size: 14px;
+    }
+
+    .logo {
+        width: 55px;
+        height: 28px;
+    }
+}
+
+
+
+
+
+body.aqua .footer-section,
+body.aqua footer {
+    background-color: #12baab !important;
+    background-image: linear-gradient(
+        135deg,
+        #12baab 0%,
+        #1f8ccf 20%,
+        #12baab 40%,
+        #0f62c8 60%,
+        #7d37bb 80%,
+        #338aff 100%
+    ) !important;
+    background-repeat: no-repeat !important;
+    background-position: 0% 50% !important;
+    background-size: 400% 400% !important;
+    -webkit-animation: aquaGradientFlow 14s ease-in-out infinite !important;
+    animation: aquaGradientFlow 14s ease-in-out infinite !important;
+}
+
+body.misty .footer-section,
+body.misty footer {
+    background: #2A1B3C !important;
+}
+
+body.mustang .footer-section,
+body.mustang footer {
+    background: #1b2330 !important;
+}
+
+
+
+
+
+.icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.25s ease;
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.material-icons {
+    font-size: 22px;
+}
+
+
+.search-wrapper {
+    position: relative;
+}
+
+.search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ccc;
+    z-index: 999;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.search-suggestions li {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.search-suggestions li:hover {
+    background-color: #f2f2f2;
+}
+
+
+
+
+
+/* =========================================
+   DRAWER CONTAINER
+========================================= */
+
+.MuiDrawer-paper {
+    width: 310px !important;
+    background: #ffffff !important;
+    box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15) !important;
+    border-radius: 10px 0 0 10px !important;
+    overflow-y: auto;
+    padding-top: 40px;
+}
+/* =========================================
+   MENU ITEMS
+========================================= */
+
+.MuiListItemButton-root {
+    display: flex !important;
+    align-items: center !important;
+    padding: 8px 16px !important;
+    margin: 1px 8px !important;
+    border-radius: 6px !important;
+    transition: background 0.2s ease;
+}
+
+.MuiListItemButton-root:hover {
+    background: #f2f2f2 !important;
+}
+.MuiListItemText-primary {
+    font-size: 12px !important;
+    font-weight: 400;
+    
+}
+/* =========================================
+   MENU ICON
+========================================= */
+
+.drawer-menu-icon {
+    width: 22px;
+    height: 22px;
+    margin-right: 12px;
+    object-fit: contain;
+    display: inline-block;
+}/* =========================================
+   SUB MENU
+========================================= */
+
+.MuiCollapse-root .MuiListItemButton-root {
+    padding-left: 15px !important;
+    font-size: 12px !important;
+}
+
+.MuiCollapse-root .MuiListItemButton-root:hover {
+    background: #eaeaea !important;
+}
+.MuiListItemButton-root svg {
+    margin-left: auto;
+}
+
+
+
+
+
+
+/* MUSTANG */
+body.mustang .MuiDrawer-paper {
+    background: #1b2330 !important;
+    color: #ffffff !important;
+}
+
+body.mustang .MuiListItemButton-root,
+body.mustang .MuiListItemText-primary {
+    color: #ffffff !important;
+}
+
+body.mustang .MuiListItemButton-root:hover {
+    background: #2b405f !important;
+}
+
+/* white icons */
+body.mustang .drawer-menu-icon {
+    filter: brightness(0) invert(1);
+}
+
+
+/* MISTY */
+body.misty .MuiDrawer-paper {
+    background: #44318D !important;
+    color: #ffffff !important;
+}
+
+body.misty .MuiListItemButton-root,
+body.misty .MuiListItemText-primary {
+    color: #ffffff !important;
+}
+
+body.misty .MuiListItemButton-root:hover {
+    background: #A4B3B6 !important;
+}
+
+
+/* AQUA (FIXED) */
+body.aqua .MuiDrawer-paper {
+    background: #087096 !important;
+    color: #ffffff !important;
+}
+
+body.aqua .MuiListItemButton-root,
+body.aqua .MuiListItemText-primary {
+    color: #ffffff !important; 
+}
+
+body.aqua .MuiListItemButton-root:hover {
+    background: rgba(0, 0, 0, 0.04) !important;
+}
+
+
+
+.drawer-fa-icon {
+    margin-right: 12px;
+    font-size: 18px;
+}
+
+
+
+
+.search-wrapper {
+    position: relative;
+}
+
+.search-box {
+    padding-right: 45px;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+/* 
+.search-icon:hover {
+    color: #f5a623;
+} */
+
+
+
+
+
+
+
+/* =========================================
+   DRAWER SEARCH
+========================================= */
+
+.drawer-search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.drawer-search-box {
+    width: 100%;
+    height: 36px;
+    padding: 0 40px 0 12px;
+    border-radius: 6px;
+    border: 1px solid #dcdcdc;
+    outline: none;
+    font-size: 13px;
+    transition: all 0.2s ease;
+}
+
+.drawer-search-box:focus {
+    border-color: #f5a623;
+    box-shadow: 0 0 4px rgba(245, 166, 35, 0.3);
+}
+
+.drawer-search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #666;
+}
+
+/* =========================================
+   DRAWER SEARCH RESULTS
+========================================= */
+
+.drawer-search-suggestions {
+    margin-top: 5px;
+    padding: 0;
+    list-style: none;
+    border-radius: 6px;
+    overflow: hidden;
+    max-height: 250px;
+    overflow-y: auto;
+    border: 1px solid #dcdcdc;
+}
+
+.drawer-search-suggestions li {
+    padding: 10px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.drawer-search-suggestions li:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.drawer-no-results {
+    padding: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #888;
+}
+
+
+body.mustang .drawer-search-box {
+    background: #2b405f;
+    border: 1px solid #3f587e;
+    color: #fff;
+}
+
+body.mustang .drawer-search-box::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+body.mustang .drawer-search-icon {
+    color: #fff;
+}
+
+body.mustang .drawer-search-suggestions {
+    background: #2b405f;
+    border-color: #3f587e;
+}
+
+body.mustang .drawer-search-suggestions li {
+    color: #fff;
+}
+
+body.mustang .drawer-search-suggestions li:hover {
+    background: #1b2330;
+}
+
+body.mustang .drawer-no-results {
+    color: rgba(255,255,255,0.7);
+}
+
+body.misty .drawer-search-box {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+}
+
+body.misty .drawer-search-box::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+body.misty .drawer-search-icon {
+    color: #fff;
+}
+
+body.misty .drawer-search-suggestions {
+    background: #8265A7;
+    border-color: rgba(255,255,255,0.2);
+}
+
+body.misty .drawer-search-suggestions li {
+    color: #fff;
+}
+
+body.misty .drawer-search-suggestions li:hover {
+    background: #2A1B3C;
+}
+
+body.misty .drawer-no-results {
+    color: rgba(255,255,255,0.8);
+}
+
+
+body.aqua .drawer-search-box {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #fff;
+}
+
+body.aqua .drawer-search-box::placeholder {
+    color: rgba(255,255,255,0.7);
+}
+
+body.aqua .drawer-search-icon {
+    color: #fff;
+}
+
+body.aqua .drawer-search-suggestions {
+    background: #087096;
+    border-color: rgba(255,255,255,0.2);
+}
+
+body.aqua .drawer-search-suggestions li {
+    color: #fff;
+}
+
+body.aqua .drawer-search-suggestions li:hover {
+    background: #21a2fd;
+}
+
+body.aqua .drawer-no-results {
+    color: rgba(255,255,255,0.8);
+}
+

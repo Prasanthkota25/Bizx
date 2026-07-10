@@ -1,0 +1,349 @@
+/* =========================================
+   BIZX COMPONENT UTILITIES — React migration
+========================================= */
+
+input[type="text"]:-webkit-autofill {
+  -webkit-box-shadow: none !important;
+}
+
+input[type="text"]:-webkit-autofill,
+*:focus {
+  -webkit-box-shadow: none !important;
+  outline: none !important;
+}
+
+textarea,
+input[type="text"],
+*:focus {
+  outline: none !important;
+}
+
+a.pgeBack mat-icon .material-icons {
+  font-size: 15px;
+}
+
+a.pgeBack mat-icon,
+a.pgeBack .material-icons {
+  width: 15px;
+  height: 16px;
+  font-size: 18px;
+}
+
+a.pgeBack:hover {
+  color: #795548;
+  text-decoration: none;
+}
+
+span.spgeBack {
+  float: right;
+}
+
+a.pgeBack {
+  color: #000;
+  text-decoration: none;
+}
+
+.dataTableScroll {
+  overflow-x: scroll;
+}
+
+.dataTableScroll .mat-mdc-cell,
+.dataTableScroll .mat-mdc-header-cell,
+.dataTableScroll .table td,
+.dataTableScroll .table th {
+  flex: 1;
+  overflow: visible !important;
+  min-width: 150px;
+}
+
+.dataTableScroll .mat-mdc-table,
+.dataTableScroll .table {
+  width: auto !important;
+}
+
+h4.SubHead a:hover {
+  text-decoration: none;
+}
+
+.projectAccounting button.smlBtnFilterArea {
+  min-width: 1px;
+  line-height: 22px;
+  color: #fff;
+  font-size: 18px;
+}
+
+.bizXPagination {
+  text-align: right;
+}
+
+
+
+.projectAccounting .mat-mdc-row.sclick {
+  cursor: pointer;
+}
+
+.projectAccounting .mat-mdc-row.sclick:hover,
+.table.bizx-table tbody tr.sclick:hover {
+  background: #fbff92;
+}
+
+/* .container-fluid div,
+.container-fluid table,
+div,
+.table {
+  font-size: 12px;
+} */
+
+.mat-mdc-cell {
+  font-size: 12px;
+}
+
+.RitFilterArea i.fa,
+.RitFilterArea mat-icon,
+.RitFilterArea .material-icons,
+.RitFilterArea i.bi {
+  color: #fff;
+}
+
+.container-fluid .mat-mdc-button,
+.container-fluid .mat-mdc-fab,
+.container-fluid .mat-mdc-icon-button,
+.container-fluid .mat-mdc-mini-fab,
+.container-fluid .mat-mdc-raised-button,
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-icon-button,
+.btn.bizx-action-btn {
+  line-height: 30px !important;
+  min-width: auto !important;
+  font-size: 12px !important;
+  margin: 4px 0 4px 8px !important;
+}
+
+.mat-mdc-menu-panel .mat-mdc-menu-content,
+.mat-mdc-menu-panel .mat-mdc-menu-content .mat-mdc-menu-item .mat-mdc-menu-item-text,
+.mat-mdc-menu-panel .mat-mdc-menu-item,
+.dropdown-menu.bizx-menu .dropdown-item {
+  line-height: 30px;
+  font-size: 12px;
+}
+
+.mat-mdc-menu-panel .mat-mdc-menu-item {
+  min-height: 30px;
+}
+
+.tmeclr {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  padding: 5px;
+  margin-right: 6px;
+  border-radius: 50%;
+}
+
+.tmeclr.tm-1 { background: #9cdeec; }
+.tmeclr.tm-2 { background: #8072ef; }
+.tmeclr.tm-3 { background: #1b2330; }
+
+.container-fluid mat-expansion-panel-header,
+.accordion-header.bizx-expansion {
+  font-size: 13px;
+}
+
+mat-expansion-panel-header mat-icon.material-icons,
+mat-expansion-panel-header i.material-icons {
+  height: 20px;
+  width: 24px;
+  font-size: 18px;
+}
+
+.container-fluid .mat-mdc-card,
+.container-fluid .card.bizx-page-card {
+  padding: 12px 24px;
+}
+
+.paddingZro .col-xs-12.col-md-8,
+.paddingZro .col-xs-12.col-md-4 {
+  padding: 0 4px;
+}
+
+.container-fluid hr {
+  border: 1px solid #d2d2d2;
+  margin: 5px 0;
+}
+
+.wrap,
+.emp-info-blk span {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  word-wrap: break-word;
+}
+
+.viw-stle-1 { color: #0d46b3; }
+.viw-stle-2 { color: #f01313; }
+.viw-stle-3 { color: #e12727; }
+
+.container-fluid div mat-icon.auto-drp-dwn,
+.container-fluid div .material-icons.auto-drp-dwn {
+  top: 5px;
+  position: relative;
+  color: #757575;
+  cursor: pointer;
+  font-size: 2.3em;
+}
+
+mat-form-field.auto-full-width,
+.form-group.auto-full-width {
+  width: 64%;
+}
+
+.alert-red-btn button,
+.alert-green-btn button,
+.alert-amber-btn button {
+  background: #fff;
+}
+
+.cust-validation.ng-touched.ng-invalid,
+.cust-validation.was-validated:invalid {
+  border: 1px solid red;
+}
+
+.asterik-mark {
+  color: red;
+}
+
+.alrt-success { background: #28a745; }
+.alrt-info { background: #17a2b8; }
+
+snack-bar-container.alrt-warning-info,
+.mat-mdc-snack-bar-container.alrt-warning-info {
+  background: #ffc107;
+  max-width: 100%;
+}
+
+@supports (-ms-ime-align: auto) {
+  .mat-input-container {
+    width: 180px;
+  }
+}
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .LftPaginationArea,
+  .LeftPaginationArea {
+    float: left;
+  }
+}
+
+h4.SubHead.SGsubHead {
+  font-weight: 500;
+}
+
+.container-fluid .SGPages div,
+.container-fluid .SGPages button.blu-btn,
+.container-fluid .SGPages button.org-btn {
+  font-size: 12px;
+}
+
+.mat-mdc-select .mat-select-value-text {
+  white-space: normal;
+}
+
+.logoloaderDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+/* SnackBar variants */
+.myWarnAlert.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background: #e14545;
+  border-radius: 0;
+}
+
+.mySucessAlert.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background: #43b352;
+  border-radius: 0;
+}
+
+.warnOurClass.mat-mdc-snack-bar-container .mdc-linear-progress__bar-inner {
+  border-color: #ff4242;
+}
+
+.sucessOurClass.mat-mdc-snack-bar-container .mdc-linear-progress__bar-inner {
+  border-color: #128929;
+}
+
+.sucessOurClass.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background: #1caf1c;
+  border-radius: 0;
+}
+
+.warnOurClass.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+  background: #f01212;
+  border-radius: 0;
+}
+
+/* Dialog */
+.mat-mdc-dialog-container .mdc-dialog__content {
+  color: black !important;
+}
+
+.mdc-dialog .mdc-dialog__content,
+.modal.bizx-dialog .modal-body {
+  padding: 0 !important;
+  font-size: 12px !important;
+  overflow-x: hidden !important;
+}
+
+.dialog-container,
+.modal.bizx-dialog .modal-content {
+  padding: 10px !important;
+}
+
+.dialog-actions button:hover {
+  color: red !important;
+}
+
+.dialog-title,
+.modal.bizx-dialog .modal-header {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  font-size: 16px !important;
+  padding: 0 !important;
+  border-bottom: 1px solid black !important;
+  margin-bottom: 15px !important;
+}
+
+.dialog-title::before {
+  content: none !important;
+  height: 35px !important;
+}
+
+.no-scroll {
+  overflow: hidden !important;
+}
+
+input {
+  font-size: 12px !important;
+}
+
+/* Bootstrap / legacy class bridges */
+.page-header,
+.page-title,
+.SubHead {
+  text-transform: uppercase;
+}
+
+.back-btn,
+a.pgeBack {
+  cursor: pointer;
+}
+
+.table.custom-table,
+.table.bizx-table {
+  width: 100%;
+  font-size: 12px;
+}

@@ -1,0 +1,365 @@
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.main-container {
+    padding: 20px;
+    min-height: calc(100vh - 44px);
+}
+
+/* =========================================
+   DASHBOARD LAYOUT
+========================================= */
+
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.dashboard-layout.panel-open {
+    grid-template-columns: 210px minmax(0, 1fr) 250px;
+}
+
+/* =========================================
+   LEFT PANEL
+========================================= */
+
+.left-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* =========================================
+   CARD BOX
+========================================= */
+
+.card-box {
+    background: var(--left-panel-bg);
+   
+  
+    overflow: hidden;
+    backdrop-filter: blur(6px);
+    box-shadow: var(--shadow);
+    color: var(--left-panel-color);
+}
+
+/* =========================================
+   SECTION TITLE
+========================================= */
+
+.section-title {
+    background: var(--section-title-bg);
+    color: #ffffff;
+    padding: 8px 10px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* =========================================
+   PROFILE CONTENT
+========================================= */
+
+.profile-content {
+    padding: 5px;
+    color: var(--left-panel-color);
+        background-color: #8265A7;
+
+}
+
+.profile-content p {
+    margin-bottom: 6px;
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+.profile-content h5 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+/* =========================================
+   POPULAR LINKS
+========================================= */
+
+.link-item {
+    background: var(--link-bg);
+    color: var(--link-color);
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--link-border);
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s, transform 0.2s;
+    font-size: 13px;
+}
+
+.link-item:last-child {
+    border-bottom: none;
+}
+
+.link-item:hover {
+    background: var(--link-hover-bg);
+    color: var(--link-hover-text);
+    transform: translateX(3px);
+}
+
+/* =========================================
+   CENTER AREA
+========================================= */
+
+.home_cont_area {
+    background: var(--home-cont-bg);
+    border: 2px solid var(--border);
+    border-radius: 2px;
+    min-height: 410px;
+    backdrop-filter: blur(4px);
+    font-size: 11px;
+    width: 740px;
+}
+
+/* =========================================
+   DASHBOARD GRID
+========================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2px;
+    background: transparent;
+    padding: 2px;
+}
+
+/* =========================================
+   DASHBOARD TILE
+========================================= */
+
+.dashboard-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    min-height: 100px;
+    background: #2b405f;
+    border: 1px solid #d2d2d2;
+    border-radius: 2px;
+    transition: background 0.25s, filter 0.2s ease;
+}
+
+.dashboard-tile:hover {
+    filter: brightness(1.12);
+    z-index: 2;
+}
+
+/* =========================================
+   TILE IMAGE
+========================================= */
+
+.tile-img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    display: block;
+}
+
+/* =========================================
+   TILE LABEL
+========================================= */
+
+.dashboard-tile span {
+    margin-top: 8px;
+    font-size: 13px;
+        margin-bottom: 8px;
+
+    line-height: 1.3;
+    padding: 0 4px;
+    color: #ffffff;
+}
+
+/* =========================================
+   RIGHT PANEL
+========================================= */
+
+.right-panel {
+    display: none;
+    flex-direction: column;
+    background: var(--right-panel-bg);
+    overflow: hidden;
+    backdrop-filter: blur(6px);
+    box-shadow: var(--shadow);
+    color: var(--right-panel-color);
+}
+
+.right-panel.show-panel {
+    display: flex;
+}
+
+/* =========================================
+   RIGHT PANEL BODY
+========================================= */
+
+.right-panel-body {
+    padding: 0px 0;
+}
+
+/* =========================================
+   OPTION BUTTONS
+========================================= */
+
+.option-link {
+    width: 100%;
+    display: block;
+    background: rgba(232, 239, 247, 0.48);
+    color: #1b2330;
+    padding: 8px 14px;
+    margin-bottom: 2px;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.25s, color 0.25s;
+    font-size: 13px;
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+.option-link:last-child {
+    margin-bottom: 0;
+}
+
+.option-link:hover {
+    background: var(--option-hover);
+    color: var(--option-hover-text);
+
+}
+
+/* =========================================
+   MISC LAYOUT
+========================================= */
+
+.popular-links-title { margin-bottom: -5px; }
+.popular-links-title .section-title { margin: 0; }
+.popular-links-list { overflow: hidden; }
+
+.hr-partner-title { margin-bottom: -5px; }
+.hr-partner-title .section-title { margin: 0px; }
+.hr-partner-content { overflow: hidden; }
+
+.menu-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.option-icon {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+/* =========================================
+   FORCE SECTION TITLE TEXT WHITE — ALL THEMES
+========================================= */
+
+body.aqua .section-title,
+body.aqua .section-title *,
+body.misty .section-title,
+body.misty .section-title *,
+body.mustang .section-title,
+body.mustang .section-title * {
+    color: #ffffff !important;
+}
+
+/* =========================================
+   RESPONSIVE — TABLET
+========================================= */
+
+@media (max-width: 992px) {
+    .dashboard-layout {
+        grid-template-columns: 1fr;
+    }
+    .left-panel,
+    .right-panel.show-panel {
+        width: 100% !important;
+    }
+    .dashboard-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* =========================================
+   RESPONSIVE — MOBILE
+========================================= */
+
+@media (max-width: 576px) {
+    .dashboard-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+
+/* ================================
+   RIGHT PANEL HEADER - AQUA ONLY
+================================ */
+
+body.aqua .menu-title[data-menu="asset-management"]    { background: #00897b !important; }
+body.aqua .menu-title[data-menu="elm"]                 { background: #4a1468 !important; }
+body.aqua .menu-title[data-menu="brand-vault"]         { background: #0277bd !important; }
+body.aqua .menu-title[data-menu="core-hr"]             { background: #f9a825 !important; }
+body.aqua .menu-title[data-menu="covid-vaccination"]   { background: #5e7a6e !important; }
+body.aqua .menu-title[data-menu="expense"]             { background: #1565c0 !important; }
+body.aqua .menu-title[data-menu="incident-management"] { background: #8d6e63 !important; }
+body.aqua .menu-title[data-menu="infinite-horizons"]   { background: #512da8 !important; }
+body.aqua .menu-title[data-menu="information-security"]{ background: #006064 !important; }
+body.aqua .menu-title[data-menu="leave"]               { background: #1976d2 !important; }
+body.aqua .menu-title[data-menu="mis"]                 { background: #37474f !important; }
+body.aqua .menu-title[data-menu="procurement"]         { background: #4a1468 !important; }
+body.aqua .menu-title[data-menu="project"]             { background: #00838f !important; }
+body.aqua .menu-title[data-menu="recruitment"]         { background: #ef6c00 !important; }
+body.aqua .menu-title[data-menu="rootz"]               { background: #6d4c41 !important; }
+body.aqua .menu-title[data-menu="skill-pack"]          { background: #00838f !important; }
+body.aqua .menu-title[data-menu="timesheet"]           { background: #1976d2 !important; }
+body.aqua .menu-title[data-menu="travel"]              { background: #e53935 !important; }
+body.aqua .menu-title[data-menu="visa"]                { background: #2e7d32 !important; }
+body.aqua .menu-title[data-menu="service-management"]  { background: #37474f !important; }
+
+
+
+
+
+
+
+
+
+
+/* .tooltip-container {
+  position: relative;
+}
+
+.tooltip-text {
+  position: absolute;
+  bottom: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+
+  background-color: black;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+
+  opacity: 0;
+  visibility: hidden;
+  white-space: nowrap;
+
+  transition: none; /* ✅ instant (no delay) *
+}
+
+.tooltip-container:hover .tooltip-text {
+  opacity: 1;
+  visibility: visible;
+} */
