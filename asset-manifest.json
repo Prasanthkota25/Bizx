@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Bizx/static/css/main.c1b3eeae.css",
-    "main.js": "/Bizx/static/js/main.1e1f120d.js",
+    "main.css": "/Bizx/static/css/main.134b1205.css",
+    "main.js": "/Bizx/static/js/main.d8402841.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/Bizx/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/bootstrap-icons.woff?": "/Bizx/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
     "static/media/fontawesome-webfont.eot": "/Bizx/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
@@ -9,8 +9,6 @@
     "static/media/bootstrap-icons.woff2?": "/Bizx/static/media/bootstrap-icons.92ea18a81d737146ff04.woff2",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "/Bizx/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/Bizx/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
-    "static/media/Back-drop.jpg": "/Bizx/static/media/Back-drop.76e7a5e17a9ce1be9a78.jpg",
-    "static/media/misty.jpg": "/Bizx/static/media/misty.35d11a91fc34980a55ad.jpg",
     "static/media/roboto-latin-700-normal.woff2": "/Bizx/static/media/roboto-latin-700-normal.d89b03c583b9adb99987.woff2",
     "static/media/roboto-latin-500-normal.woff2": "/Bizx/static/media/roboto-latin-500-normal.1c7e8aa0ba84e4f92e5f.woff2",
     "static/media/roboto-latin-300-normal.woff": "/Bizx/static/media/roboto-latin-300-normal.c8fe44913c8a1c89e4c7.woff",
@@ -84,11 +82,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/Bizx/static/media/roboto-greek-ext-700-normal.5b51dabd754d1b37053e.woff",
     "static/media/roboto-greek-ext-300-normal.woff": "/Bizx/static/media/roboto-greek-ext-300-normal.7e59ad18b38575208130.woff",
     "index.html": "/Bizx/index.html",
-    "main.c1b3eeae.css.map": "/Bizx/static/css/main.c1b3eeae.css.map",
-    "main.1e1f120d.js.map": "/Bizx/static/js/main.1e1f120d.js.map"
+    "main.134b1205.css.map": "/Bizx/static/css/main.134b1205.css.map",
+    "main.d8402841.js.map": "/Bizx/static/js/main.d8402841.js.map"
   },
   "entrypoints": [
-    "static/css/main.c1b3eeae.css",
-    "static/js/main.1e1f120d.js"
+    "static/css/main.134b1205.css",
+    "static/js/main.d8402841.js"
   ]
 }
