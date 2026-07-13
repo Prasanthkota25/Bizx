@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/home.css';
+import { publicAsset } from '../utils/publicAsset';
 
 const getMenuKey = (menu) =>
     menu?.toLowerCase().replace(/\s+/g, '-');
@@ -171,7 +172,7 @@ function DashboardCards() {
 
     const menuIcons = {
         Leave: '/Leave.png',
-        Timesheet: '/timesheet.png',
+        Timesheet: '/Timesheet.png',
         ELM: '/ELM.png',
         Travel: '/Travel.png',
         'Core HR': '/Core HR.png',
@@ -214,9 +215,11 @@ function DashboardCards() {
     };
 
     const getTileSrc = (tile) => {
-        return currentTheme === 'misty'
+        const path = currentTheme === 'misty'
             ? mistyTileIcons[tile.key] || tile.src
             : tile.src;
+
+        return publicAsset(path);
     };
 
     /* =========================================
@@ -256,7 +259,7 @@ function DashboardCards() {
         { key: 'skill-pack', label: 'Skill Pack', src: '/Skill Pack.png', menu: 'Skill Pack' },
         { key: 'rootz', label: 'Rootz', src: '/Rootz.png', menu: 'Rootz' },
 
-        { key: 'timesheet', label: 'Timesheet', src: '/timesheet.png', menu: 'Timesheet' },
+        { key: 'timesheet', label: 'Timesheet', src: '/Timesheet.png', menu: 'Timesheet' },
         { key: 'travel', label: 'Travel', src: '/Travel.png', menu: 'Travel' },
 
         { key: 'visa', label: 'Visa', src: '/Visa.png', menu: 'Visa' },
@@ -408,7 +411,7 @@ function DashboardCards() {
 
                         {selectedMenu && menuIcons[selectedMenu] && (
                             <img
-                                src={menuIcons[selectedMenu]}
+                                src={publicAsset(menuIcons[selectedMenu])}
                                 alt={selectedMenu}
                                 className="option-icon"
                             />

@@ -20,6 +20,7 @@ import {
     useCallback
 } from 'react';
 import { formatFullName, formatName } from '../utils/formatters';
+import { publicAsset } from '../utils/publicAsset';
 
 import '../styles/navbar.css';
 
@@ -355,7 +356,7 @@ function Navbar() {
     };
     const menuIcons = {
         Leave: '/Leave.png',
-        Timesheet: '/timesheet.png',
+        Timesheet: '/Timesheet.png',
         ELM: '/ELM.png',
         Travel: '/Travel.png',
         'Core HR': '/Core HR.png',
@@ -533,7 +534,7 @@ function Navbar() {
                                     {/* ✅ ICON */}
                                     {menuIcons[menuName] && (
                                         <img
-                                            src={menuIcons[menuName]}
+                                            src={publicAsset(menuIcons[menuName])}
                                             alt={menuName}
                                             className="drawer-menu-icon"
                                         />
@@ -615,7 +616,7 @@ function Navbar() {
                 >
 
                     <img
-                        src="/Logo-white.png"
+                        src={publicAsset('Logo-white.png')}
                         alt="Logo"
                         className="logo"
                     />

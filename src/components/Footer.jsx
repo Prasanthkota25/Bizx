@@ -1,3 +1,5 @@
+import { publicAsset } from '../utils/publicAsset';
+
 function Footer() {
   return (
     <footer className="footer-section">
@@ -13,7 +15,7 @@ function Footer() {
          
 
    <span className="footer-logo-text">
-            <img src="/ics-Logo.png" alt="ICS Logo" className="footer-logo" 
+            <img src={publicAsset('ics-Logo.png')} alt="ICS Logo" className="footer-logo" 
              style={{ width: "14px", margin: "0 5px" }} />
             Infinite Computer Solutions
           </span>

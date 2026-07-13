@@ -16,6 +16,9 @@ import './styles/bizx-legacy.css';
 import './styles/bizx-components.css';
 import './styles/bizx-responsive.css';
 
+import { setThemeBackgrounds } from './utils/publicAsset';
+
+setThemeBackgrounds();
 
 const materialIcons = document.createElement("link");
 materialIcons.href = "https://fonts.googleapis.com/icon?family=Material+Icons";
