@@ -1484,7 +1484,7 @@ form.cust-from textarea {
   color: #ffffff !important;
 } */
 
-
+/* 
 .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
   font: inherit;
   letter-spacing: inherit;
@@ -1506,11 +1506,12 @@ form.cust-from textarea {
   padding: 16.5px 14px;
   padding-right: 0;
 }
+ */
 
 
-
-
-
+.MuiInputBase-input {
+  height: 0.4375em !important;
+}
 
 
 
