@@ -226,6 +226,7 @@ useEffect(() => {
                 );
 
                 setUserDetails(res.data);
+                console.log("User Details:", res.data);
 
                 const leaveRes = await API.get(
                     `/leave/my/${username}`
@@ -548,6 +549,17 @@ useEffect(() => {
             botResponse =
                 `Hi ${userName}, How can I help you today?`;
         }
+
+        else if (
+    text.includes("manager") &&
+    !text.includes("skip")
+) {
+    botResponse = userDetails
+        ? `Manager Name: ${userDetails.managerName || userDetails.manager || "N/A"}
+Manager ID: ${userDetails.managerId || "N/A"}
+Manager Email: ${userDetails.managerEmail || "N/A"}`
+        : "Manager details are not available.";
+}
         else if (
             text.includes("profile") ||
             text.includes("account") ||
