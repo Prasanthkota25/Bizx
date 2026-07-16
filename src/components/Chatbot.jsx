@@ -81,6 +81,7 @@ function Chatbot({ chatOpen, setChatOpen, setSelectedMenu, menuOptions = {} }) {
     const skipResultRef = useRef(false);
     const utteranceRef = useRef(null);
     const chatbotRef = useRef(null);
+    const messagesEndRef = useRef(null);
 useEffect(() => {
     const handleClickOutside = (event) => {
         if (
@@ -115,6 +116,11 @@ useEffect(() => {
         );
     };
 }, [chatOpen, setChatOpen, setSelectedMenu]);
+useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({
+        behavior: "smooth"
+    });
+}, [messages]);
 
     useEffect(() => {
         const SpeechRecognition =
@@ -670,7 +676,7 @@ useEffect(() => {
                 </div>
             </div>
 
-            <div className="chatbot-body">
+            {/* <div className="chatbot-body">
                 {messages.map((msg, index) => (
                     <div
                         key={index}
@@ -702,7 +708,44 @@ useEffect(() => {
                         )}
                     </div>
                 ))}
-            </div>
+            </div> */}
+
+            <div className="chatbot-body">
+    {messages.map((msg, index) => (
+        <div
+            key={index}
+            className={
+                msg.role === "user"
+                    ? "user-message"
+                    : "bot-message"
+            }
+        >
+            {typeof msg.content === "object" &&
+            msg.content.type === "menu" ? (
+                <>
+                    <div>{msg.content.title}</div>
+
+                    <div className="chatbot-links">
+                        {msg.content.items.map((item, i) => (
+                            <button
+                                key={i}
+                                className="chatbot-menu-link"
+                                onClick={() => navigate(item.path)}
+                            >
+                                {item.label}
+                            </button>
+                        ))}
+                    </div>
+                </>
+            ) : (
+                msg.content
+            )}
+        </div>
+    ))}
+
+    {/* Auto-scroll target */}
+    <div ref={messagesEndRef} />
+</div>
 
             <div className="chatbot-footer">
                 <input
