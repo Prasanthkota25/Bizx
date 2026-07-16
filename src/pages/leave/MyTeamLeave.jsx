@@ -10,10 +10,11 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 
 
 import { useState, useEffect } from 'react';
-import Layout from '../components/Layout';
-import API from '../api/api';
-import { formatName } from '../utils/formatters';
-import '../styles/leave.css';
+import Layout from '../../components/Layout';
+import API from '../../api/api';
+import { formatName } from '../../utils/formatters';
+import '../../styles/leave.css';
+
 
 function MyTeamLeave() {
   const [leaves, setLeaves] = useState([]);

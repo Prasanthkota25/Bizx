@@ -6,15 +6,15 @@ function RightPanel() {
       <h4>Leave</h4>
 
       <div className='list-group'>
-        <Link className='list-group-item list-group-item-action' to='/applyleave'>
+        <Link className='list-group-item list-group-item-action' to='/leave/applyleave'>
           Apply Leave
         </Link>
 
-        <Link className='list-group-item list-group-item-action' to='/leavebalance'>
+        <Link className='list-group-item list-group-item-action' to='/leave/leavebalance'>
           Leave Balance
         </Link>
 
-        <Link className='list-group-item list-group-item-action' to='/myteamleave'>
+        <Link className='list-group-item list-group-item-action' to='/leave/myteamleave'>
           My Team Leave
         </Link>
       </div>

@@ -254,37 +254,37 @@ function Navbar() {
     const menuOptions = {
 
         'Asset Management': [
-            { label: 'My Asset', path: '/myasset' }
+            { label: 'My Asset', path: '/asset-management/myasset' }
         ],
 
         ELM: [
-            { label: 'Initiate Resignation', path: '/initiateresignation' },
-            { label: 'Approve Resignation', path: '/approveresignation' },
-            { label: 'Revoke Resignation Approval', path: '/revokeresignation' },
-            { label: 'My Team Project', path: '/myteamproject' },
-            { label: 'Pending Manager Approval', path: '/pendingmanagerapproval' },
-            { label: 'Movement Approval', path: '/movementapproval' }
+            { label: 'Initiate Resignation', path: '/elm/initiateresignation' },
+            { label: 'Approve Resignation', path: '/elm/approveresignation' },
+            { label: 'Revoke Resignation Approval', path: '/elm/revokeresignation' },
+            { label: 'My Team Project', path: '/elm/myteamproject' },
+            { label: 'Pending Manager Approval', path: '/elm/pendingmanagerapproval' },
+            { label: 'Movement Approval', path: '/elm/movementapproval' }
         ],
 
         'Core HR': [
-            { label: 'Employee Dashboard', path: '/employeedashboard' }
+            { label: 'Employee Dashboard', path: '/core-hr/employeedashboard' }
         ],
 
 
         'Covid Vaccination': [
-            { label: 'Covid Vaccination', path: '/covidvaccination' }
+            { label: 'Covid Vaccination', path: '/covid-vaccination/covidvaccination' }
         ],
 
         Expense: [
-            { label: 'Create Expense', path: '/createexpense' },
-            { label: 'My Expense', path: '/myexpense' },
-            { label: 'Pending Expenses', path: '/pendingexpenses' }
+            { label: 'Create Expense', path: '/expense/createexpense' },
+            { label: 'My Expense', path: '/expense/myexpense' },
+            { label: 'Pending Expenses', path: '/expense/pendingexpenses' }
         ],
 
 
         'Incident Management': [
-            { label: 'Raise Incident', path: '/raiseincident' },
-            { label: 'My Incidents', path: '/myincidents' }
+            { label: 'Raise Incident', path: '/incident-management/raiseincident' },
+            { label: 'My Incidents', path: '/incident-management/myincidents' }
         ],
 
 
@@ -292,7 +292,7 @@ function Navbar() {
         'Information Security': [
             {
                 label: 'Security Awareness & Training',
-                path: '/securityawarenesstraining'
+                path: '/information-security/securityawarenesstraining'
             }
         ],
         Leave: [
@@ -302,56 +302,56 @@ function Navbar() {
         ],
 
         MIS: [
-            { label: 'MIS View', path: '/misview' }
+            { label: 'MIS View', path: '/mis/misview' }
         ],
         Procurement: [
             {
                 label: 'Purchase Request for Approvals',
-                path: '/purchaserequestforapprovals'
+                path: '/procurement/purchaserequestforapprovals'
             }
         ],
 
 
         Project: [
-            { label: 'Movement Approval', path: '/movementapproval' },
-            { label: 'My Project Approval', path: '/myprojectapproval' },
-            { label: 'Pending Bulk Movement List', path: '/pendingbulkmovementlist' },
-            { label: 'Pending Project Requests', path: '/pendingprojectrequests' }
+            { label: 'Movement Approval', path: '/project/movementapproval' },
+            { label: 'My Project Approval', path: '/project/myprojectapproval' },
+            { label: 'Pending Bulk Movement List', path: '/project/pendingbulkmovementlist' },
+            { label: 'Pending Project Requests', path: '/project/pendingprojectrequests' }
         ],
         Recruitment: [
-            { label: 'My Pending Feedback', path: '/mypendingfeedback' }
+            { label: 'My Pending Feedback', path: '/recruitment/mypendingfeedback' }
         ],
 
 
 
         'Skill Pack': [
-            { label: 'My Team Skills', path: '/myteamskills' },
-            { label: 'Update Skills', path: '/updateskills' },
-            { label: 'Upload Resume', path: '/uploadresume' }
+            { label: 'My Team Skills', path: '/skill-pack/myteamskills' },
+            { label: 'Update Skills', path: '/skill-pack/updateskills' },
+            { label: 'Upload Resume', path: '/skill-pack/uploadresume' }
         ],
         Rootz: [
-            { label: 'My Rootz', path: '/myrootz' }
+            { label: 'My Rootz', path: '/rootz/myrootz' }
         ],
 
         Timesheet: [
-            { label: 'My Timesheet', path: '/mytimesheet' },
-            { label: 'My Team Timesheet', path: '/myteamtimesheet' }
+            { label: 'My Timesheet', path: '/timesheet/mytimesheet' },
+            { label: 'My Team Timesheet', path: '/timesheet/myteamtimesheet' }
         ],
 
         Travel: [
-            { label: 'Travel Request', path: '/travelrequest' },
-            { label: 'Pending Request', path: '/pendingrequest' },
-            { label: 'My Travel Request', path: '/mytravelrequest' }
+            { label: 'Travel Request', path: '/travel/travelrequest' },
+            { label: 'Pending Request', path: '/travel/pendingrequest' },
+            { label: 'My Travel Request', path: '/travel/mytravelrequest' }
         ],
         'Service Management': [
-            { label: 'Raise Service Request', path: '/raiseservicerequest' },
-            { label: 'My Service Request', path: '/myservicerequest' },
-            { label: 'Pending Service Request', path: '/pendingservicerequest' }
+            { label: 'Raise Service Request', path: '/service-management/raiseservicerequest' },
+            { label: 'My Service Request', path: '/service-management/myservicerequest' },
+            { label: 'Pending Service Request', path: '/service-management/pendingservicerequest' }
         ],
         Visa: [
-            { label: 'Visa Request', path: '/visarequest' },
-            { label: 'Pending Visa', path: '/pendingvisa' },
-            { label: 'My Visa List', path: '/myvisalist' }
+            { label: 'Visa Request', path: '/visa/visarequest' },
+            { label: 'Pending Visa', path: '/visa/pendingvisa' },
+            { label: 'My Visa List', path: '/visa/myvisalist' }
         ],
     };
     const menuIcons = {

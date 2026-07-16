@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import Layout from '../components/Layout';
-import API from '../api/api';
-import '../styles/leave.css';
-import { useLeaveConfig } from '../hooks/useLeaveConfig';
+import Layout from '../../components/Layout';
+import API from '../../api/api';
+import '../../styles/leave.css';
+import { useLeaveConfig } from '../../hooks/useLeaveConfig';
 
 function LeaveBalance() {
 

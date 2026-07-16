@@ -14,11 +14,11 @@ import { Snackbar, Alert, Button } from '@mui/material';
 import { FaUndo, FaPaperPlane } from "react-icons/fa";
 import { FaRegCalendarDays } from "react-icons/fa6";
 
-import Layout from '../components/Layout';
-import API from '../api/api';
-import { formatFullName, formatName } from '../utils/formatters';
-import '../styles/leave.css';
-import { useLeaveConfig } from '../hooks/useLeaveConfig';
+import Layout from '../../components/Layout';
+import API from '../../api/api';
+import { formatFullName, formatName } from '../../utils/formatters';
+import '../../styles/leave.css';
+import { useLeaveConfig } from '../../hooks/useLeaveConfig';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
