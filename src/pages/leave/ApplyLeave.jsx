@@ -1133,25 +1133,46 @@ function ApplyLeave() {
 
 
 
+  // const fetchCCUsers = async (value) => {
+  //   if (value.trim().length < 3) {
+  //     setCcSuggestions([]);
+  //     return;
+  //   }
+
+  //   try {
+  //     const res = await fetch(
+  //       `http://localhost:8080/users/search?keyword=${encodeURIComponent(value)}`
+  //     );
+
+  //     const data = await res.json();
+
+  //     setCcSuggestions(data || []);
+  //   } catch (error) {
+  //     console.error("CC Search error:", error);
+  //     setCcSuggestions([]);
+  //   }
+  // };
+
+
+
+
   const fetchCCUsers = async (value) => {
-    if (value.trim().length < 3) {
-      setCcSuggestions([]);
-      return;
-    }
+  if (value.trim().length < 3) {
+    setCcSuggestions([]);
+    return;
+  }
 
-    try {
-      const res = await fetch(
-        `http://localhost:8080/users/search?keyword=${encodeURIComponent(value)}`
-      );
+  try {
+    const res = await API.get(
+      `/users/search?keyword=${encodeURIComponent(value)}`
+    );
 
-      const data = await res.json();
-
-      setCcSuggestions(data || []);
-    } catch (error) {
-      console.error("CC Search error:", error);
-      setCcSuggestions([]);
-    }
-  };
+    setCcSuggestions(res.data || []);
+  } catch (error) {
+    console.error("CC Search error:", error);
+    setCcSuggestions([]);
+  }
+};
 
   // const handleCCChange = (e) => {
   //   const value = e.target.value;
