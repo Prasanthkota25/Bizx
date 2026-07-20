@@ -608,18 +608,18 @@ function ApplyLeave() {
   //   let newErrors = {};
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  // Approver validation
-  if (!user.manager || user.manager.trim() === '') {
-    showSnackbar(
-      'Approver is not assigned. Please contact your HR/Admin team to get an approver mapped before applying leave.',
-      'error'
-    );
-    return;
-  }
+    // Approver validation
+    if (!user.manager || user.manager.trim() === '') {
+      showSnackbar(
+        'Approver is not assigned. Please contact your HR/Admin team to get an approver mapped before applying leave.',
+        'error'
+      );
+      return;
+    }
 
-  let newErrors = {};
+    let newErrors = {};
     if (!leaveType) newErrors.leaveType = true;
     if (!form.fromDate) newErrors.fromDate = true;
     if (!form.toDate) newErrors.toDate = true;
@@ -962,13 +962,13 @@ function ApplyLeave() {
 
               setLeaveType('');
               setForm({
-            
-  fromDate: '',
-  toDate: '',
-  address: '',
-  reason: '',
-  session: 'FULL',
-  phone: user.phone || ''
+
+                fromDate: '',
+                toDate: '',
+                address: '',
+                reason: '',
+                session: 'FULL',
+                phone: user.phone || ''
 
                 // adoptionDate: '',
                 // childAgeInMonths: '',
@@ -1759,15 +1759,15 @@ function ApplyLeave() {
 
 
                   <input
-  type="text"
-  className="form-control"
-  value={
-    user.manager
-      ? formatName(user.manager)
-      : 'No Approver Assigned'
-  }
-  readOnly
-/>
+                    type="text"
+                    className="form-control"
+                    value={
+                      user.manager
+                        ? formatName(user.manager)
+                        : 'No Approver Assigned'
+                    }
+                    readOnly
+                  />
                 </div>
 
                 <div className="col-md-3 mb-3">
@@ -2203,23 +2203,23 @@ function ApplyLeave() {
 
                         <td>{formatDate(item.toDate)}</td>
 
+
                         <td>
-                          <td>
-                            <span
-                              className={
-                                (item.displayStatus || normalizeStatus(item.status)) === "Approved"
-                                  ? "status-approved"
-                                  : (item.displayStatus || normalizeStatus(item.status)) === "Rejected"
-                                    ? "status-rejected"
-                                    : (item.displayStatus || normalizeStatus(item.status)) === "Cancelled"
-                                      ? "status-cancelled"
-                                      : "status-pending"
-                              }
-                            >
-                              {item.displayStatus || normalizeStatus(item.status)}
-                            </span>
-                          </td>
+                          <span
+                            className={
+                              (item.displayStatus || normalizeStatus(item.status)) === "Approved"
+                                ? "status-approved"
+                                : (item.displayStatus || normalizeStatus(item.status)) === "Rejected"
+                                  ? "status-rejected"
+                                  : (item.displayStatus || normalizeStatus(item.status)) === "Cancelled"
+                                    ? "status-cancelled"
+                                    : "status-pending"
+                            }
+                          >
+                            {item.displayStatus || normalizeStatus(item.status)}
+                          </span>
                         </td>
+
 
 
 
