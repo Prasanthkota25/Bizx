@@ -313,9 +313,9 @@ function ApplyLeave() {
 
         setUser(userRes.data);
         setForm(prev => ({
-  ...prev,
-  phone: userRes.data.phone || ''
-}));
+          ...prev,
+          phone: userRes.data.phone || ''
+        }));
 
         const historyData = sortByLatest(
           (histRes.data || []).flatMap(item => {
@@ -601,17 +601,25 @@ function ApplyLeave() {
   };
 
 
+  // const handleSubmit = async (e) => {
+
+  //   e.preventDefault();
+
+  //   let newErrors = {};
+
   const handleSubmit = async (e) => {
+  e.preventDefault();
 
+  // Approver validation
+  if (!user.manager || user.manager.trim() === '') {
+    showSnackbar(
+      'Approver is not assigned. Please contact your HR/Admin team to get an approver mapped before applying leave.',
+      'error'
+    );
+    return;
+  }
 
-
-    e.preventDefault();
-
-
-
-
-    let newErrors = {};
-
+  let newErrors = {};
     if (!leaveType) newErrors.leaveType = true;
     if (!form.fromDate) newErrors.fromDate = true;
     if (!form.toDate) newErrors.toDate = true;
@@ -954,11 +962,14 @@ function ApplyLeave() {
 
               setLeaveType('');
               setForm({
-                fromDate: '',
-                toDate: '',
-                address: '',
-                reason: '',
-                session: 'FULL',
+            
+  fromDate: '',
+  toDate: '',
+  address: '',
+  reason: '',
+  session: 'FULL',
+  phone: user.phone || ''
+
                 // adoptionDate: '',
                 // childAgeInMonths: '',
                 // adoptionDocument: ''
@@ -1098,7 +1109,7 @@ function ApplyLeave() {
       address: item.address ?? '',
       reason: item.reason ?? '',
       session: item.dayType || 'FULL',
-       phone: user.phone || ''
+      phone: user.phone || ''
 
       // adoptionDate: item.adoptionDate || '',
       // childAgeInMonths: item.childAgeInMonths || '',
@@ -1163,22 +1174,22 @@ function ApplyLeave() {
 
 
   const fetchCCUsers = async (value) => {
-  if (value.trim().length < 3) {
-    setCcSuggestions([]);
-    return;
-  }
+    if (value.trim().length < 3) {
+      setCcSuggestions([]);
+      return;
+    }
 
-  try {
-    const res = await API.get(
-      `/users/search?keyword=${encodeURIComponent(value)}`
-    );
+    try {
+      const res = await API.get(
+        `/users/search?keyword=${encodeURIComponent(value)}`
+      );
 
-    setCcSuggestions(res.data || []);
-  } catch (error) {
-    console.error("CC Search error:", error);
-    setCcSuggestions([]);
-  }
-};
+      setCcSuggestions(res.data || []);
+    } catch (error) {
+      console.error("CC Search error:", error);
+      setCcSuggestions([]);
+    }
+  };
 
   // const handleCCChange = (e) => {
   //   const value = e.target.value;
@@ -1532,6 +1543,7 @@ function ApplyLeave() {
                         address: '',
                         reason: '',
                         session: 'FULL',
+                        phone: user.phone || ''
                         // adoptionDate: '',
                         // childAgeInMonths: '',
                         // adoptionDocument: ''
@@ -1738,12 +1750,24 @@ function ApplyLeave() {
 
                 <div className="col-md-3 mb-3">
                   <label className="form-label">Approver <span className="required">*</span></label>
-                  <input
+                  {/* <input
                     type="text"
                     className="form-control"
                     value={formatName(user.manager)}
                     readOnly
-                  />
+                  /> */}
+
+
+                  <input
+  type="text"
+  className="form-control"
+  value={
+    user.manager
+      ? formatName(user.manager)
+      : 'No Approver Assigned'
+  }
+  readOnly
+/>
                 </div>
 
                 <div className="col-md-3 mb-3">
@@ -1789,20 +1813,20 @@ function ApplyLeave() {
                     readOnly
                   /> */}
                   <input
-  type="tel"
-  inputMode="numeric"
-  className="form-control"
-  value={form.phone || ''}
-  maxLength={10}
-  onChange={(e) => {
-    const value = e.target.value.replace(/\D/g, '');
+                    type="tel"
+                    inputMode="numeric"
+                    className="form-control"
+                    value={form.phone || ''}
+                    maxLength={10}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, '');
 
-    setForm({
-      ...form,
-      phone: value
-    });
-  }}
-/>
+                      setForm({
+                        ...form,
+                        phone: value
+                      });
+                    }}
+                  />
                 </div>
 
 
@@ -1990,7 +2014,7 @@ function ApplyLeave() {
                   {isCancelMode ? (
                     <>
                       <FaUndo className="btn-icon" />
-                     Cancel Leave 
+                      Cancel Leave
                     </>
                   ) : (
                     <>
