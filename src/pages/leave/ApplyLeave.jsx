@@ -280,6 +280,7 @@ function ApplyLeave() {
     address: '',
     reason: '',
     session: 'FULL',
+    phone: '',
 
 
     adoptionDate: '',
@@ -311,6 +312,10 @@ function ApplyLeave() {
         console.log("Leave History", histRes.data);
 
         setUser(userRes.data);
+        setForm(prev => ({
+  ...prev,
+  phone: userRes.data.phone || ''
+}));
 
         const historyData = sortByLatest(
           (histRes.data || []).flatMap(item => {
@@ -1059,7 +1064,7 @@ function ApplyLeave() {
   const handleReset = () => {
     setLeaveType('');
     setForm({
-      fromDate: '', toDate: '', address: '', reason: '', session: 'FULL',
+      fromDate: '', toDate: '', address: '', reason: '', session: 'FULL', phone: user.phone || ''
       // adoptionDate: '',
       // childAgeInMonths: '',
       // adoptionDocument: ''
@@ -1093,6 +1098,7 @@ function ApplyLeave() {
       address: item.address ?? '',
       reason: item.reason ?? '',
       session: item.dayType || 'FULL',
+       phone: user.phone || ''
 
       // adoptionDate: item.adoptionDate || '',
       // childAgeInMonths: item.childAgeInMonths || '',
@@ -1205,7 +1211,7 @@ function ApplyLeave() {
 
   // Avoid duplicates
   const handleSelectCC = (user) => {
-    if (isCancelMode) return;
+    // if (isCancelMode) return;
 
     if (selectedCC.some(u => u.id === user.id)) return;
 
@@ -1215,7 +1221,7 @@ function ApplyLeave() {
   };
 
   const removeCC = (id) => {
-    if (isCancelMode) return;
+    // if (isCancelMode) return;
 
     setSelectedCC(selectedCC.filter(u => u.id !== id));
   };
@@ -1776,12 +1782,27 @@ function ApplyLeave() {
 
                 <div className="col-md-3 mb-3" >
                   <label className="form-label" >Contact Number <span className="required">*</span></label>
-                  <input
+                  {/* <input
                     type="tel"
                     className="form-control"
                     value={user.phone}
                     readOnly
-                  />
+                  /> */}
+                  <input
+  type="tel"
+  inputMode="numeric"
+  className="form-control"
+  value={form.phone || ''}
+  maxLength={10}
+  onChange={(e) => {
+    const value = e.target.value.replace(/\D/g, '');
+
+    setForm({
+      ...form,
+      phone: value
+    });
+  }}
+/>
                 </div>
 
 
@@ -1797,7 +1818,7 @@ function ApplyLeave() {
                         placeholder="Type min 3 characters"
                         value={ccSearch}
                         maxLength={10}
-                        disabled={isFormLocked}
+                        // disabled={isFormLocked}
                         onChange={handleCCChange}
                         onKeyDown={(e) => {
                           if (e.key === "Enter") {
