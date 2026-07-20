@@ -1969,7 +1969,7 @@ function ApplyLeave() {
                   {isCancelMode ? (
                     <>
                       <FaUndo className="btn-icon" />
-                      Leave Cancel
+                     Cancel Leave 
                     </>
                   ) : (
                     <>
