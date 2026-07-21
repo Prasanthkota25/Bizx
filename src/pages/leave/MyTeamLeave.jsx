@@ -16,6 +16,97 @@ import { formatName } from '../../utils/formatters';
 import '../../styles/leave.css';
 
 
+
+
+const buildManagerHistory = (data) => {
+  return (data || []).flatMap(item => {
+    const base = {
+      ...item
+    };
+
+    // // Cancel Requested
+    // if (item.status === "CANCEL_REQUESTED") {
+    //   return [
+    //     {
+    //       ...base,
+    //       requestType: "LEAVE",
+    //       displayStatus: "Cancelled",
+    //       uniqueId: `${item.id}-leave`
+    //     },
+
+    //     {
+    //       ...base,
+    //       requestType: "CANCEL",
+    //       displayStatus: "Applied",
+    //       uniqueId: `${item.id}-cancel`
+    //     }
+    //   ];
+    // }
+
+    if (item.status === "CANCEL_REQUESTED") {
+  return [
+    {
+      ...base,
+      requestType: "CANCEL",
+      displayStatus: "Applied",
+      uniqueId: `${item.id}-cancel`
+    },
+
+    {
+      ...base,
+      requestType: "LEAVE",
+      displayStatus: "Cancelled",
+      uniqueId: `${item.id}-leave`
+    }
+  ];
+}
+    // Cancelled
+    if (item.status === "CANCELLED") {
+      return [
+        {
+          ...base,
+          requestType: "CANCEL",
+          displayStatus: "Approved",
+          uniqueId: `${item.id}-cancelled`
+        }
+      ];
+    }
+
+    // Approved
+    if (item.status === "APPROVED") {
+      return [
+        {
+          ...base,
+          requestType: "LEAVE",
+          displayStatus: "Approved",
+          uniqueId: `${item.id}-approved`
+        }
+      ];
+    }
+
+    // Rejected
+    if (item.status === "REJECTED") {
+      return [
+        {
+          ...base,
+          requestType: "LEAVE",
+          displayStatus: "Rejected",
+          uniqueId: `${item.id}-rejected`
+        }
+      ];
+    }
+
+    // Applied / Pending
+    return [
+      {
+        ...base,
+        requestType: "LEAVE",
+        displayStatus: "Applied",
+        uniqueId: `${item.id}-pending`
+      }
+    ];
+  });
+};
 function MyTeamLeave() {
   const [leaves, setLeaves] = useState([]);
   const [filtered, setFiltered] = useState([]);
@@ -54,9 +145,9 @@ function MyTeamLeave() {
         const userResponse = await API.get(`/users/username/${username}`);
         const user = userResponse.data;
 
-        
-console.log("User:", user);
-console.log("Role:", user.role);
+
+        console.log("User:", user);
+        console.log("Role:", user.role);
 
 
         if (!user) {
@@ -68,14 +159,20 @@ console.log("Role:", user.role);
           setIsManager(true);
           // const leaveResponse = await API.get(`/leave/team/${user.id}`);
           const leaveResponse = await API.get('/leave/team', {
-  headers: {
-    managerId: user.id
-  }
-});
+            headers: {
+              managerId: user.id
+            }
+          });
 
 
-          setLeaves(leaveResponse.data || []);
-          setFiltered(leaveResponse.data || []);
+          // setLeaves(leaveResponse.data || []);
+          // setFiltered(leaveResponse.data || []);
+          const formattedData = buildManagerHistory(
+            leaveResponse.data || []
+          );
+
+          setLeaves(formattedData);
+          setFiltered(formattedData);
         } else {
           setLeaves([]);
           setFiltered([]);
@@ -91,22 +188,87 @@ console.log("Role:", user.role);
     fetchData();
   }, []);
 
+  // useEffect(() => {
+  //   let data = [...leaves];
+
+  //   //Filtering Logic....
+  //   if (statusFilter) {
+  //     if (statusFilter === 'PENDING') {
+  //       data = data.filter((leave) => normalizeStatus(leave) === 'Applied');
+  //     } else {
+  //       data = data.filter((leave) => leave.status === statusFilter);
+  //     }
+  //   }
+
+
+
+  //   if (search.trim().length >= 3) {
+  //     const q = search.toLowerCase();
+  //     data = data.filter(
+  //       (leave) =>
+  //         String(leave.userId ?? '').toLowerCase().includes(q) ||
+  //         leave.username?.toLowerCase().includes(q) ||
+  //         leave.leaveType?.toLowerCase().includes(q) ||
+  //         leave.reason?.toLowerCase().includes(q)
+  //     );
+  //   }
+
+  //   // setFiltered(data);
+  //   setFiltered(
+  //     data.sort((a, b) => {
+  //       const dateA = a.appliedOn ? new Date(a.appliedOn).getTime() : 0;
+  //       const dateB = b.appliedOn ? new Date(b.appliedOn).getTime() : 0;
+  //       return dateB - dateA;
+  //     })
+  //   );
+
+  //   setCurrentPage(1);
+  // }, [statusFilter, search, leaves]);
+
+
+
+
   useEffect(() => {
     let data = [...leaves];
 
-    //Filtering Logic....
+    // Status Filter
     if (statusFilter) {
+      // if (statusFilter === 'PENDING') {
+      //   data = data.filter(
+      //     (leave) => normalizeStatus(leave) === 'Applied'
+      //   );
+      // } else {
+      //   data = data.filter(
+      //     (leave) => leave.status === statusFilter
+      //   );
+      // }
+
       if (statusFilter === 'PENDING') {
-        data = data.filter((leave) => normalizeStatus(leave) === 'Applied');
-      } else {
-        data = data.filter((leave) => leave.status === statusFilter);
-      }
+  data = data.filter(
+    leave => leave.displayStatus === 'Applied'
+  );
+}
+else if (statusFilter === 'APPROVED') {
+  data = data.filter(
+    leave => leave.displayStatus === 'Approved'
+  );
+}
+else if (statusFilter === 'REJECTED') {
+  data = data.filter(
+    leave => leave.displayStatus === 'Rejected'
+  );
+}
+else if (statusFilter === 'CANCELLED') {
+  data = data.filter(
+    leave => leave.displayStatus === 'Cancelled'
+  );
+}
     }
 
-
-
+    // Search Filter
     if (search.trim().length >= 3) {
       const q = search.toLowerCase();
+
       data = data.filter(
         (leave) =>
           String(leave.userId ?? '').toLowerCase().includes(q) ||
@@ -116,18 +278,58 @@ console.log("Role:", user.role);
       );
     }
 
-    // setFiltered(data);
-    setFiltered(
-      data.sort((a, b) => {
-        const dateA = a.appliedOn ? new Date(a.appliedOn).getTime() : 0;
-        const dateB = b.appliedOn ? new Date(b.appliedOn).getTime() : 0;
-        return dateB - dateA;
-      })
-    );
+    // Default sort only when no column sort selected
+    // if (!orderBy) {
+    //   data.sort((a, b) => {
+    //     const dateA = a.appliedOn
+    //       ? new Date(a.appliedOn).getTime()
+    //       : 0;
 
+    //     const dateB = b.appliedOn
+    //       ? new Date(b.appliedOn).getTime()
+    //       : 0;
+
+    //     return dateB - dateA;
+    //   });
+    // }
+
+    if (!orderBy) {
+  data.sort((a, b) => {
+
+    const dateA = a.appliedOn
+      ? new Date(a.appliedOn).getTime()
+      : 0;
+
+    const dateB = b.appliedOn
+      ? new Date(b.appliedOn).getTime()
+      : 0;
+
+    if (dateA !== dateB) {
+      return dateB - dateA;
+    }
+
+    if (
+      a.requestType === "CANCEL" &&
+      b.requestType === "LEAVE"
+    ) {
+      return -1;
+    }
+
+    if (
+      a.requestType === "LEAVE" &&
+      b.requestType === "CANCEL"
+    ) {
+      return 1;
+    }
+
+    return 0;
+  });
+}
+
+    setFiltered(data);
     setCurrentPage(1);
-  }, [statusFilter, search, leaves]);
 
+  }, [statusFilter, search, leaves, orderBy, order]);
 
   useEffect(() => {
     const newTotalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
@@ -312,19 +514,7 @@ console.log("Role:", user.role);
   //   if (normalized === 'CANCELLED') return 'status-cancelled';
   //   return 'status-pending';
   // };
-  const getStatusClass = (status) => {
-    const s = (status || '').toUpperCase();
 
-    if (s === 'APPROVED' || s === 'CANCELLED') {
-      return 'status-approved';
-    }
-
-    if (s === 'REJECTED') {
-      return 'status-rejected';
-    }
-
-    return 'status-pending';
-  };
 
 
   // const normalizeStatus = (status) => {
@@ -347,10 +537,14 @@ console.log("Role:", user.role);
     return status;
   };
 
-  const isActionAllowed = (item) => {
-    const status = normalizeStatus(item);
-    return status === 'Applied' || status === 'CANCEL_REQUESTED';
-  };
+  // const isActionAllowed = (item) => {
+  //   const status = normalizeStatus(item);
+  //   return status === 'Applied' || status === 'CANCEL_REQUESTED';
+  // };
+
+  // const isActionAllowed = (item) => {
+  //   return item.displayStatus === "Applied";
+  // };
 
   // const formatStatus = (status) => {
   //   if (!status) return '';
@@ -382,12 +576,18 @@ console.log("Role:", user.role);
   //     }
   //     return 'Leave Application';
   //   };
+
   const getRequestType = (item) => {
-    if (item.status === 'CANCEL_REQUESTED') {
-      return 'Cancel Application';
-    }
-    return 'Leave Application';
+    return item.requestType === 'CANCEL'
+      ? 'Cancel Application'
+      : 'Leave Application';
   };
+  // const getRequestType = (item) => {
+  //   if (item.status === 'CANCEL_REQUESTED') {
+  //     return 'Cancel Application';
+  //   }
+  //   return 'Leave Application';
+  // };
 
   const [expandedRows, setExpandedRows] = useState({});
   const toggleReason = (id) => {
@@ -460,7 +660,7 @@ console.log("Role:", user.role);
 
     // XLSX.writeFile(workbook, "MyTeamLeave.xlsx");
     const randomNumber = Math.floor(100000 + Math.random() * 900000);
-XLSX.writeFile(workbook, `Leave_${randomNumber}.xlsx`);
+    XLSX.writeFile(workbook, `Leave_${randomNumber}.xlsx`);
   };
 
 
@@ -477,6 +677,118 @@ XLSX.writeFile(workbook, `Leave_${randomNumber}.xlsx`);
     setSnackbar(prev => ({ ...prev, open: false }));
   };
 
+  // const handleRequestSort = (property) => {
+  //   const isAsc = orderBy === property && order === 'asc';
+  //   const newOrder = isAsc ? 'desc' : 'asc';
+
+  //   setOrder(newOrder);
+  //   setOrderBy(property);
+
+  //   let data = [...leaves]; // ✅ always start from original
+
+  //   // ✅ APPLY FILTER
+  //   if (statusFilter) {
+  //     if (statusFilter === 'PENDING') {
+  //       data = data.filter((leave) => normalizeStatus(leave) === 'Applied');
+  //     } else {
+  //       data = data.filter((leave) => leave.status === statusFilter);
+  //     }
+  //   }
+
+  //   // ✅ APPLY SEARCH
+  //   if (search.trim().length >= 3) {
+  //     const q = search.toLowerCase();
+  //     data = data.filter(
+  //       (leave) =>
+  //         String(leave.userId ?? '').toLowerCase().includes(q) ||
+  //         leave.username?.toLowerCase().includes(q) ||
+  //         leave.leaveType?.toLowerCase().includes(q) ||
+  //         leave.reason?.toLowerCase().includes(q)
+  //     );
+  //   }
+
+  //   // ✅ APPLY SORT
+  //   data.sort((a, b) => {
+  //     let valA;
+  //     let valB;
+
+  //     switch (property) {
+  //       case 'employee':
+  //         valA = formatName(a.username || '').toLowerCase();
+  //         valB = formatName(b.username || '').toLowerCase();
+  //         break;
+
+  //       case 'userId':
+  //         valA = parseInt(a.userId) || 0;
+  //         valB = parseInt(b.userId) || 0;
+  //         break;
+
+  //       case 'requestType':
+  //         valA = (getRequestType(a) || '').toLowerCase();
+  //         valB = (getRequestType(b) || '').toLowerCase();
+  //         break;
+
+  //       case 'phone':
+  //         valA = parseInt((a.phone || '').replace(/\D/g, '')) || 0;
+  //         valB = parseInt((b.phone || '').replace(/\D/g, '')) || 0;
+  //         break;
+
+  //       case 'appliedOn':
+  //         valA = a.appliedOn ? new Date(a.appliedOn).getTime() : 0;
+  //         valB = b.appliedOn ? new Date(b.appliedOn).getTime() : 0;
+  //         break;
+
+  //       case 'leaveType':
+  //         valA = (a.leaveType || '').toLowerCase();
+  //         valB = (b.leaveType || '').toLowerCase();
+  //         break;
+
+  //       case 'fromDate':
+  //         valA = a.fromDate ? new Date(a.fromDate).getTime() : 0;
+  //         valB = b.fromDate ? new Date(b.fromDate).getTime() : 0;
+  //         break;
+
+  //       case 'toDate':
+  //         valA = a.toDate ? new Date(a.toDate).getTime() : 0;
+  //         valB = b.toDate ? new Date(b.toDate).getTime() : 0;
+  //         break;
+
+  //       case 'days':
+  //         valA = Number(a.days || 0);
+  //         valB = Number(b.days || 0);
+  //         break;
+
+  //       case 'status':
+  //         valA = (a.status || '').toLowerCase();
+  //         valB = (b.status || '').toLowerCase();
+  //         break;
+
+  //       case 'reason':
+  //         valA = (a.reason || '').toLowerCase();
+  //         valB = (b.reason || '').toLowerCase();
+  //         break;
+
+  //       case 'approverRemarks':
+  //         valA = (a.approverRemarks || '').toLowerCase();
+  //         valB = (b.approverRemarks || '').toLowerCase();
+  //         break;
+
+  //       default:
+  //         valA = a[property];
+  //         valB = b[property];
+  //     }
+
+  //     if (valA < valB) return newOrder === 'asc' ? -1 : 1;
+  //     if (valA > valB) return newOrder === 'asc' ? 1 : -1;
+
+  //     // return (b.id || 0) - (a.id || 0); // tie-break
+  //     return 0;
+  //   });
+
+
+  //   setFiltered(data);
+  // };
+
   const handleRequestSort = (property) => {
     const isAsc = orderBy === property && order === 'asc';
     const newOrder = isAsc ? 'desc' : 'asc';
@@ -484,53 +796,19 @@ XLSX.writeFile(workbook, `Leave_${randomNumber}.xlsx`);
     setOrder(newOrder);
     setOrderBy(property);
 
-    let data = [...leaves]; // ✅ always start from original
-
-    // ✅ APPLY FILTER
-    if (statusFilter) {
-      if (statusFilter === 'PENDING') {
-        data = data.filter((leave) => normalizeStatus(leave) === 'Applied');
-      } else {
-        data = data.filter((leave) => leave.status === statusFilter);
-      }
-    }
-
-    // ✅ APPLY SEARCH
-    if (search.trim().length >= 3) {
-      const q = search.toLowerCase();
-      data = data.filter(
-        (leave) =>
-          String(leave.userId ?? '').toLowerCase().includes(q) ||
-          leave.username?.toLowerCase().includes(q) ||
-          leave.leaveType?.toLowerCase().includes(q) ||
-          leave.reason?.toLowerCase().includes(q)
-      );
-    }
-
-    // ✅ APPLY SORT
-    data.sort((a, b) => {
+    const sortedData = [...filtered].sort((a, b) => {
       let valA;
       let valB;
 
       switch (property) {
-        case 'employee':
-          valA = formatName(a.username || '').toLowerCase();
-          valB = formatName(b.username || '').toLowerCase();
-          break;
-
         case 'userId':
-          valA = parseInt(a.userId) || 0;
-          valB = parseInt(b.userId) || 0;
+          valA = Number(a.userId || 0);
+          valB = Number(b.userId || 0);
           break;
 
-        case 'requestType':
-          valA = (getRequestType(a) || '').toLowerCase();
-          valB = (getRequestType(b) || '').toLowerCase();
-          break;
-
-        case 'phone':
-          valA = parseInt((a.phone || '').replace(/\D/g, '')) || 0;
-          valB = parseInt((b.phone || '').replace(/\D/g, '')) || 0;
+        case 'employee':
+          valA = (formatName(a.username) || '').toLowerCase();
+          valB = (formatName(b.username) || '').toLowerCase();
           break;
 
         case 'appliedOn':
@@ -559,8 +837,18 @@ XLSX.writeFile(workbook, `Leave_${randomNumber}.xlsx`);
           break;
 
         case 'status':
-          valA = (a.status || '').toLowerCase();
-          valB = (b.status || '').toLowerCase();
+          valA = formatStatus(normalizeStatus(a)).toLowerCase();
+          valB = formatStatus(normalizeStatus(b)).toLowerCase();
+          break;
+
+        case 'requestType':
+          valA = (getRequestType(a) || '').toLowerCase();
+          valB = (getRequestType(b) || '').toLowerCase();
+          break;
+
+        case 'phone':
+          valA = Number(a.phone || 0);
+          valB = Number(b.phone || 0);
           break;
 
         case 'reason':
@@ -574,22 +862,17 @@ XLSX.writeFile(workbook, `Leave_${randomNumber}.xlsx`);
           break;
 
         default:
-          valA = a[property];
-          valB = b[property];
+          return 0;
       }
 
       if (valA < valB) return newOrder === 'asc' ? -1 : 1;
       if (valA > valB) return newOrder === 'asc' ? 1 : -1;
 
-      // return (b.id || 0) - (a.id || 0); // tie-break
       return 0;
     });
 
-
-    setFiltered(data);
+    setFiltered(sortedData);
   };
-
-
 
   //Pagination Logic...
   const totalPages = Math.ceil(filtered.length / pageSize) || 1;
@@ -619,9 +902,9 @@ XLSX.writeFile(workbook, `Leave_${randomNumber}.xlsx`);
 
 
 
-console.log("Leaves:", leaves);
-console.log("Filtered:", filtered);
-console.log("Paginated Data:", paginatedData);
+  console.log("Leaves:", leaves);
+  console.log("Filtered:", filtered);
+  console.log("Paginated Data:", paginatedData);
 
   return (
     <Layout>
@@ -711,7 +994,7 @@ console.log("Paginated Data:", paginatedData);
                 <option value="REJECTED">Rejected</option>
                 <option value="CANCELLED">Cancelled</option>
               </select>
-              
+
 
               <input
                 type="text"
@@ -933,7 +1216,8 @@ console.log("Paginated Data:", paginatedData);
                     console.log(item);
 
                     return (
-                      <tr key={item.id}>
+                      // <tr key={item.id}>
+                      <tr key={item.uniqueId}>
                         <td>{item.userId || '-'}</td>
 
                         <td>{formatName(item.username) || '-'}</td>
@@ -953,11 +1237,27 @@ console.log("Paginated Data:", paginatedData);
                             {normalizeStatus(item.status)}
                           </span>
                         </td> */}
+
                         <td>
+                          <span
+                            className={
+                              item.displayStatus === "Approved"
+                                ? "status-approved"
+                                : item.displayStatus === "Rejected"
+                                  ? "status-rejected"
+                                  : item.displayStatus === "Cancelled"
+                                    ? "status-cancelled"
+                                    : "status-pending"
+                            }
+                          >
+                            {item.displayStatus}
+                          </span>
+                        </td>
+                        {/* <td>
                           <span className={getStatusClass(item.status)}>
                             {formatStatus(normalizeStatus(item))}
                           </span>
-                        </td>
+                        </td> */}
 
                         <td>{getRequestType(item)}</td>
                         <td>{item.phone || '-'}</td>
@@ -1008,7 +1308,64 @@ console.log("Paginated Data:", paginatedData);
                           )}
                         </td> */}
 
+
+
                         <td>
+  {(item.requestType === "CANCEL" &&
+    item.displayStatus === "Applied") ||
+
+   (item.requestType === "LEAVE" &&
+    item.displayStatus === "Applied") ? (
+
+    <input
+      type="text"
+      className="form-control"
+      placeholder="Remarks"
+      value={remarksMap[item.id] || ''}
+      onChange={(e) =>
+        setRemarksMap(prev => ({
+          ...prev,
+          [item.id]: e.target.value
+        }))
+      }
+    />
+
+  ) : item.requestType === "LEAVE" &&
+      item.displayStatus === "Cancelled" ? (
+
+    ""
+
+  ) : (
+
+    item.approverRemarks || ""
+
+  )}
+</td>
+{/* <td>
+  {(item.requestType === "CANCEL" &&
+    item.displayStatus === "Applied") ||
+
+   (item.requestType === "LEAVE" &&
+    item.displayStatus === "Applied") ? (
+
+    <input
+      type="text"
+      className="form-control"
+      placeholder="Remarks"
+      value={remarksMap[item.id] || ''}
+      onChange={(e) =>
+        setRemarksMap(prev => ({
+          ...prev,
+          [item.id]: e.target.value
+        }))
+      }
+    />
+
+  ) : (
+    item.approverRemarks || ""
+  )}
+</td> */}
+                        {/* <td>
                           {isActionAllowed(item) && isManager ? (
                             <input
                               type="text"
@@ -1025,26 +1382,81 @@ console.log("Paginated Data:", paginatedData);
                           ) : (
                             item.approverRemarks || '-'
                           )}
-                        </td>
+                        </td> */}
 
 
+<td>
+  {isManager && (
+    <div className="action-icons">
 
+      <button
+        className={`icon-btn ${
+          item.requestType === "LEAVE" &&
+          item.displayStatus === "Cancelled"
+            ? "disabled-btn"
+            : ""
+        }`}
+        disabled={
+          item.requestType === "LEAVE" &&
+          item.displayStatus === "Cancelled"
+        }
+        onClick={() => {
+          if (item.requestType === "CANCEL") {
+            handleCancelDecision(item.id, "APPROVE");
+          } else {
+            handleApprove(item.id);
+          }
+        }}
+      >
+        <i className="bi bi-check"></i>
+      </button>
 
-                        <td>
+      <button
+        className={`icon-btn ${
+          item.requestType === "LEAVE" &&
+          item.displayStatus === "Cancelled"
+            ? "disabled-btn"
+            : ""
+        }`}
+        disabled={
+          item.requestType === "LEAVE" &&
+          item.displayStatus === "Cancelled"
+        }
+        onClick={() => {
+          if (item.requestType === "CANCEL") {
+            handleCancelDecision(item.id, "REJECT");
+          } else {
+            handleReject(item.id);
+          }
+        }}
+      >
+        <i className="bi bi-x"></i>
+      </button>
+
+    </div>
+  )}
+</td>
+
+                        {/* <td>
                           {isManager && (
                             <div className="action-icons">
 
-                              {/* APPROVE */}
+                              {/* APPROVE *
                               <button
                                 className={`icon-btn ${isActionAllowed(item) ? '' : 'disabled-btn'}`}
                                 disabled={!isActionAllowed(item)}
                                 onClick={() => {
-                                  const status = normalizeStatus(item);
+                                  // const status = normalizeStatus(item);
 
-                                  if (status === 'Applied') {
+                                  // if (status === 'Applied') {
+                                  //   handleApprove(item.id);
+                                  // } else if (status === 'CANCEL_REQUESTED') {
+                                  //   handleCancelDecision(item.id, 'APPROVE');
+                                  // }
+                                  if (item.requestType === "CANCEL") {
+                                    handleCancelDecision(item.id, "APPROVE");
+                                  } else {
                                     handleApprove(item.id);
-                                  } else if (status === 'CANCEL_REQUESTED') {
-                                    handleCancelDecision(item.id, 'APPROVE');
                                   }
                                 }}
                                 title="Approve"
@@ -1052,17 +1464,22 @@ console.log("Paginated Data:", paginatedData);
                                 <i className="bi bi-check"></i>
                               </button>
 
-                              {/* REJECT */}
+                              {/* REJECT *
                               <button
                                 className={`icon-btn ${isActionAllowed(item) ? '' : 'disabled-btn'}`}
                                 disabled={!isActionAllowed(item)}
                                 onClick={() => {
-                                  const status = normalizeStatus(item);
+                                  // const status = normalizeStatus(item);
 
-                                  if (status === 'Applied') {
+                                  // if (status === 'Applied') {
+                                  //   handleReject(item.id);
+                                  // } else if (status === 'CANCEL_REQUESTED') {
+                                  //   handleCancelDecision(item.id, 'REJECT');
+                                  // }
+                                  if (item.requestType === "CANCEL") {
+                                    handleCancelDecision(item.id, "REJECT");
+                                  } else {
                                     handleReject(item.id);
-                                  } else if (status === 'CANCEL_REQUESTED') {
-                                    handleCancelDecision(item.id, 'REJECT');
                                   }
                                 }}
                                 title="Reject"
@@ -1072,7 +1489,10 @@ console.log("Paginated Data:", paginatedData);
 
                             </div>
                           )}
-                        </td>
+                        </td> */}
+
+
+
 
 
                       </tr>

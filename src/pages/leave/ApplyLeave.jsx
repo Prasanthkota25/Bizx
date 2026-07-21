@@ -195,27 +195,47 @@ const safeCreatedTime = (value) => {
   return Number.isNaN(t) ? 0 : t;
 };
 
-//Sorting Logic fifo
-const compareNewestFirst = (a, b) => {
-  const ta = safeCreatedTime(a.createdAt);
-  const tb = safeCreatedTime(b.createdAt);
+// //Sorting Logic fifo
+// const compareNewestFirst = (a, b) => {
+//   const ta = safeCreatedTime(a.createdAt);
+//   const tb = safeCreatedTime(b.createdAt);
 
-  if (ta !== tb) return tb - ta;
+//   if (ta !== tb) return tb - ta;
 
-  const ida = Number(a.sortId ?? a.id) || 0;
-  const idb = Number(b.sortId ?? b.id) || 0;
-  return idb - ida;
+//   const ida = Number(a.sortId ?? a.id) || 0;
+//   const idb = Number(b.sortId ?? b.id) || 0;
+//   return idb - ida;
+// };
+
+// const sortByLatest = (data) => {
+//   return [...data].sort(compareNewestFirst);
+// };
+
+
+
+const compareLatestLeave = (a, b) => {
+  const ta = new Date(a.fromDate).getTime();
+  const tb = new Date(b.fromDate).getTime();
+
+  if (ta !== tb) {
+    return tb - ta; // Latest date first
+  }
+
+  return (Number(b.id) || 0) - (Number(a.id) || 0);
 };
 
 const sortByLatest = (data) => {
-  return [...data].sort(compareNewestFirst);
+  return [...data].sort(compareLatestLeave);
 };
-
 
 function ApplyLeave() {
 
+  // const [order, setOrder] = useState('desc');
+  // const [orderBy, setOrderBy] = useState('createdAt');
+
+
   const [order, setOrder] = useState('desc');
-  const [orderBy, setOrderBy] = useState('createdAt');
+const [orderBy, setOrderBy] = useState('fromDate');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
@@ -1421,10 +1441,14 @@ function ApplyLeave() {
         valA = safeCreatedTime(a.toDate);
         valB = safeCreatedTime(b.toDate);
         break;
+      // case "status":
+      //   valA = (a.status || "").toLowerCase();
+      //   valB = (b.status || "").toLowerCase();
+      //   break;
       case "status":
-        valA = (a.status || "").toLowerCase();
-        valB = (b.status || "").toLowerCase();
-        break;
+  valA = (a.displayStatus || a.status || "").toLowerCase();
+  valB = (b.displayStatus || b.status || "").toLowerCase();
+  break;
 
       case "requestType":
         valA = (getRequestType(a) || "").toLowerCase();
@@ -1441,19 +1465,32 @@ function ApplyLeave() {
         valB = (b.reason || "").toLowerCase();
         break;
 
-      case "createdAt":
+      // case "createdAt":
+      // default:
+      //   if (order === 'asc') {
+      //     return -compareNewestFirst(a, b);
+      //   }
+      //   return compareNewestFirst(a, b);
       default:
-        if (order === 'asc') {
-          return -compareNewestFirst(a, b);
-        }
-        return compareNewestFirst(a, b);
+  if (order === 'asc') {
+    return new Date(a.fromDate).getTime() -
+           new Date(b.fromDate).getTime();
+  }
+
+  return new Date(b.fromDate).getTime() -
+         new Date(a.fromDate).getTime();
     }
 
-    if (valA < valB) return order === "asc" ? -1 : 1;
-    if (valA > valB) return order === "asc" ? 1 : -1;
+    // if (valA < valB) return order === "asc" ? -1 : 1;
+    // if (valA > valB) return order === "asc" ? 1 : -1;
 
-    // Tie-break: newest always first
-    return compareNewestFirst(a, b);
+    // // Tie-break: newest always first
+    // return compareNewestFirst(a, b);
+    if (valA < valB) return order === "asc" ? -1 : 1;
+if (valA > valB) return order === "asc" ? 1 : -1;
+
+// Tie-break: latest From Date first
+return compareLatestLeave(a, b);
   });
   const paginatedHistory = sortedHistory.slice(
     (currentPage - 1) * pageSize,
