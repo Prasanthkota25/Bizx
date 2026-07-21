@@ -361,18 +361,38 @@ else if (statusFilter === 'CANCELLED') {
             try {
               await API.put(`/leave/cancel-decision/${id}/${action}`, { remarks });
 
-              setLeaves(prev =>
-                prev.map(l =>
-                  l.id === id
-                    ? {
-                      ...l,
-                      status: action === 'APPROVE' ? 'CANCELLED' : 'APPROVED',
-                      approverRemarks: remarks
-                    }
-                    : l
-                )
-              );
+              // setLeaves(prev =>
+              //   prev.map(l =>
+              //     l.id === id
+              //       ? {
+              //         ...l,
+              //         status: action === 'APPROVE' ? 'CANCELLED' : 'APPROVED',
+              //         approverRemarks: remarks
+              //       }
+              //       : l
+              //   )
+              // );
 
+
+
+              setLeaves(prev =>
+  prev.map(l =>
+    l.id === id
+      ? {
+          ...l,
+          status:
+            action === 'APPROVE'
+              ? 'CANCELLED'
+              : 'APPROVED',
+          displayStatus:
+            action === 'APPROVE'
+              ? 'Cancelled'
+              : 'Approved',
+          approverRemarks: remarks
+        }
+      : l
+  )
+);
               showSnackbar(
                 action === 'APPROVE'
                   ? "Leave cancellation approved"
@@ -418,13 +438,25 @@ else if (statusFilter === 'CANCELLED') {
             try {
               await API.put(`/leave/approve/${id}`, { remarks });
 
+              // setLeaves(prev =>
+              //   prev.map(l =>
+              //     l.id === id
+              //       ? { ...l, status: 'APPROVED', approverRemarks: remarks }
+              //       : l
+              //   )
+              // );
               setLeaves(prev =>
-                prev.map(l =>
-                  l.id === id
-                    ? { ...l, status: 'APPROVED', approverRemarks: remarks }
-                    : l
-                )
-              );
+  prev.map(l =>
+    l.id === id
+      ? {
+          ...l,
+          status: 'APPROVED',
+          displayStatus: 'Approved',
+          approverRemarks: remarks
+        }
+      : l
+  )
+);
 
               showSnackbar("Leave approved successfully", "success");
 
@@ -465,13 +497,25 @@ else if (statusFilter === 'CANCELLED') {
             try {
               await API.put(`/leave/reject/${id}`, { remarks });
 
+              // setLeaves(prev =>
+              //   prev.map(l =>
+              //     l.id === id
+              //       ? { ...l, status: 'REJECTED', approverRemarks: remarks }
+              //       : l
+              //   )
+              // );
               setLeaves(prev =>
-                prev.map(l =>
-                  l.id === id
-                    ? { ...l, status: 'REJECTED', approverRemarks: remarks }
-                    : l
-                )
-              );
+  prev.map(l =>
+    l.id === id
+      ? {
+          ...l,
+          status: 'REJECTED',
+          displayStatus: 'Rejected',
+          approverRemarks: remarks
+        }
+      : l
+  )
+);
 
               // showSnackbar("Leave rejected successfully", "success");
               showSnackbar("Leave rejected successfully", "error");
@@ -1211,11 +1255,20 @@ else if (statusFilter === 'CANCELLED') {
                     <td colSpan="13" className="no-data">No Data Found</td>
                   </tr>
                 ) : (
+                  // paginatedData.map((item) => {
+
+                  //   console.log(item);
+
+                  //   return (
+
                   paginatedData.map((item) => {
 
-                    console.log(item);
+  console.log(item);
 
-                    return (
+  const isActionable =
+    item.displayStatus === "Applied";
+
+  return (
                       // <tr key={item.id}>
                       <tr key={item.uniqueId}>
                         <td>{item.userId || '-'}</td>
@@ -1389,7 +1442,7 @@ else if (statusFilter === 'CANCELLED') {
   {isManager && (
     <div className="action-icons">
 
-      <button
+      {/* <button
         className={`icon-btn ${
           item.requestType === "LEAVE" &&
           item.displayStatus === "Cancelled"
@@ -1399,7 +1452,12 @@ else if (statusFilter === 'CANCELLED') {
         disabled={
           item.requestType === "LEAVE" &&
           item.displayStatus === "Cancelled"
-        }
+        } */}
+        <button
+  className={`icon-btn ${
+    !isActionable ? "disabled-btn" : ""
+  }`}
+  disabled={!isActionable}
         onClick={() => {
           if (item.requestType === "CANCEL") {
             handleCancelDecision(item.id, "APPROVE");
@@ -1411,7 +1469,7 @@ else if (statusFilter === 'CANCELLED') {
         <i className="bi bi-check"></i>
       </button>
 
-      <button
+      {/* <button
         className={`icon-btn ${
           item.requestType === "LEAVE" &&
           item.displayStatus === "Cancelled"
@@ -1421,7 +1479,13 @@ else if (statusFilter === 'CANCELLED') {
         disabled={
           item.requestType === "LEAVE" &&
           item.displayStatus === "Cancelled"
-        }
+        } */}
+
+        <button
+  className={`icon-btn ${
+    !isActionable ? "disabled-btn" : ""
+  }`}
+  disabled={!isActionable}
         onClick={() => {
           if (item.requestType === "CANCEL") {
             handleCancelDecision(item.id, "REJECT");
