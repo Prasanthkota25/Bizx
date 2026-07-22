@@ -2,9 +2,6 @@
 import CloseIcon from '@mui/icons-material/Close';
 import { Typography } from '@mui/material';
 
-
-
-import API from '../api/api';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import List from '@mui/material/List';
@@ -179,52 +176,27 @@ function Navbar() {
 
 
 
-    // const fetchUsers = async (value) => {
-
-    //     if (value.trim().length < 3) {
-    //         setSuggestions([]);
-    //         return;
-    //     }
-
-    //     try {
-    //         const res = await fetch(
-    //             `http://localhost:8080/users/search?keyword=${encodeURIComponent(value)}`
-    //         );
-
-    //         const data = await res.json();
-
-    //         setSuggestions(data || []);
-
-    //     } catch (error) {
-    //         console.error("Search error:", error);
-    //         setSuggestions([]);
-    //     }
-    // };
-
     const fetchUsers = async (value) => {
 
-    if (value.trim().length < 3) {
-        setSuggestions([]);
-        return;
-    }
+        if (value.trim().length < 3) {
+            setSuggestions([]);
+            return;
+        }
 
-    try {
+        try {
+            const res = await fetch(
+                `http://localhost:8080/users/search?keyword=${encodeURIComponent(value)}`
+            );
 
-        const res = await API.get(
-            `/users/search?keyword=${encodeURIComponent(value)}`
-        );
+            const data = await res.json();
 
-        console.log("Navbar Users:", res.data);
+            setSuggestions(data || []);
 
-        setSuggestions(res.data || []);
-
-    } catch (error) {
-
-        console.error("Search error:", error);
-        setSuggestions([]);
-    }
-};
-
+        } catch (error) {
+            console.error("Search error:", error);
+            setSuggestions([]);
+        }
+    };
 
     const handleSearchChange = (e) => {
         const value = e.target.value;
@@ -237,26 +209,14 @@ function Navbar() {
         }
     };
 
-    // const handleSearch = () => {
-    //     if (searchTerm.trim().length < 3) {
-    //         setSuggestions([]);
-    //         return;
-    //     }
-
-    //     fetchUsers(searchTerm);
-    // };
-
     const handleSearch = () => {
+        if (searchTerm.trim().length < 3) {
+            setSuggestions([]);
+            return;
+        }
 
-    console.log("Searching:", searchTerm);
-
-    if (searchTerm.trim().length < 3) {
-        setSuggestions([]);
-        return;
-    }
-
-    fetchUsers(searchTerm);
-};
+        fetchUsers(searchTerm);
+    };
 
 
     useEffect(() => {
