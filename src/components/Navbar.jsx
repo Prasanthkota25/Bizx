@@ -262,15 +262,6 @@ function Navbar() {
 
 
 
-    useEffect(() => {
-
-    if (searchTerm.trim().length >= 3) {
-        fetchUsers(searchTerm);
-    } else {
-        setSuggestions([]);
-    }
-
-}, [searchTerm]);
 
     /* =========================================
        LOGOUT
