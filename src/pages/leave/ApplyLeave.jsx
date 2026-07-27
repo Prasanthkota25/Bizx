@@ -1544,7 +1544,8 @@ return compareLatestLeave(a, b);
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="form cust-from">
+            {/* <form onSubmit={handleSubmit} className="form cust-from"> */}
+            <form onSubmit={handleSubmit} className="leave-form">
               <div className="row">
 
                 <div className="col-md-3 mb-3">
