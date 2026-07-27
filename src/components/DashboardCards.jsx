@@ -266,6 +266,7 @@ function DashboardCards() {
     };
 
     return (
+        <div className="main-container">
         <div className={`dashboard-layout ${selectedMenu ? 'panel-open' : ''}`}>
             {/* =========================================
                 LEFT PANEL
@@ -392,6 +393,7 @@ function DashboardCards() {
                 setSelectedMenu={setSelectedMenu}
                 menuOptions={menuOptions}
             />
+        </div>
         </div>
     );
 }
