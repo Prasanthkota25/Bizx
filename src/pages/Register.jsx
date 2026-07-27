@@ -107,93 +107,218 @@ function Register() {
     }
   };
 
-  return (
+//   return (
 
-    <div className='auth-container'>
+//     <div className='auth-container'>
 
-      <div className='auth-card'>
+//       <div className='auth-card'>
 
-        <h2 className='text-center mb-4'>
-          Register
-        </h2>
+//         <h2 className='text-center mb-4'>
+//           Register
+//         </h2>
 
+//         <input
+//           type='text'
+//           name='firstname'
+//           placeholder='First Name'
+//           className='form-control mb-3'
+//           onChange={handleChange}
+//         />
+
+//         <input
+//           type='text'
+//           name='lastname'
+//           placeholder='Last Name'
+//           className='form-control mb-3'
+//           onChange={handleChange}
+//         />
+
+//         <input
+//           type='text'
+//           name='username'
+//           placeholder='Username'
+//           className='form-control mb-3'
+//           onChange={handleChange}
+//         />
+
+//         <input
+//           type='password'
+//           name='password'
+//           placeholder='Password'
+//           className='form-control mb-3'
+//           onChange={handleChange}
+//         />
+
+//         <input
+//           type='text'
+//           name='phone'
+//           placeholder='Phone Number'
+//           className='form-control mb-3'
+//           value={formData.phone}
+//           onChange={handleChange}
+//         />
+
+//         <input
+//           type='email'
+//           name='email'
+//           placeholder='Email'
+//           className='form-control mb-3'
+//           onChange={handleChange}
+//         />
+//         <select
+//   name="gender"
+//   className="form-control mb-3"
+//   value={formData.gender}
+//   onChange={handleChange}
+// >
+//   <option value="">Select Gender</option>
+//   <option value="MALE">Male</option>
+//   <option value="FEMALE">Female</option>
+// </select>
+
+
+//         <button
+//           className='btn btn-success w-100 mb-3'
+//           onClick={handleRegister}
+//         >
+//           Register
+//         </button>
+
+//         <Link to='/'>
+//           <button className='btn btn-primary w-100'>
+//             Go To Login
+//           </button>
+//         </Link>
+
+//       </div>
+
+//     </div>
+//   );
+// }
+
+
+
+
+return (
+  <div className="auth-container">
+    <form
+      className="form register-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleRegister();
+      }}
+    >
+      <div className="form-title">
+        <span>create your</span>
+      </div>
+
+      <div className="title-2">
+        <span>Bizx</span>
+      </div>
+
+
+      <section className="bg-stars">
+        <span className="star"></span>
+        <span className="star"></span>
+        <span className="star"></span>
+        <span className="star"></span>
+      </section>
+      <div className="input-container">
         <input
-          type='text'
-          name='firstname'
-          placeholder='First Name'
-          className='form-control mb-3'
+          className="input-mail"
+          type="text"
+          name="firstname"
+          placeholder="First Name"
+          value={formData.firstname}
           onChange={handleChange}
         />
+      </div>
 
+      <div className="input-container">
         <input
-          type='text'
-          name='lastname'
-          placeholder='Last Name'
-          className='form-control mb-3'
+          className="input-mail"
+          type="text"
+          name="lastname"
+          placeholder="Last Name"
+          value={formData.lastname}
           onChange={handleChange}
         />
+      </div>
 
+      <div className="input-container">
         <input
-          type='text'
-          name='username'
-          placeholder='Username'
-          className='form-control mb-3'
+          className="input-mail"
+          type="text"
+          name="username"
+          placeholder="Username"
+          value={formData.username}
           onChange={handleChange}
         />
+      </div>
 
+      <div className="input-container">
         <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          className='form-control mb-3'
+          className="input-pwd"
+          type="password"
+          name="password"
+          placeholder="Password"
+          value={formData.password}
           onChange={handleChange}
         />
+      </div>
 
+      <div className="input-container">
         <input
-          type='text'
-          name='phone'
-          placeholder='Phone Number'
-          className='form-control mb-3'
+          className="input-mail"
+          type="text"
+          name="phone"
+          placeholder="Phone Number"
           value={formData.phone}
           onChange={handleChange}
         />
-
-        <input
-          type='email'
-          name='email'
-          placeholder='Email'
-          className='form-control mb-3'
-          onChange={handleChange}
-        />
-        <select
-  name="gender"
-  className="form-control mb-3"
-  value={formData.gender}
-  onChange={handleChange}
->
-  <option value="">Select Gender</option>
-  <option value="MALE">Male</option>
-  <option value="FEMALE">Female</option>
-</select>
-
-
-        <button
-          className='btn btn-success w-100 mb-3'
-          onClick={handleRegister}
-        >
-          Register
-        </button>
-
-        <Link to='/'>
-          <button className='btn btn-primary w-100'>
-            Go To Login
-          </button>
-        </Link>
-
       </div>
 
-    </div>
-  );
+      <div className="input-container">
+        <input
+          className="input-mail"
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+      </div>
+
+      <div className="input-container">
+        <select
+          name="gender"
+          className="input-mail gender-select"
+          value={formData.gender}
+          onChange={handleChange}
+        >
+          <option value="">Select Gender</option>
+          <option value="MALE">Male</option>
+          <option value="FEMALE">Female</option>
+        </select>
+      </div>
+
+
+
+      <button type="submit" className="submit">
+        <span className="sign-text">
+          Register
+        </span>
+      </button>
+
+      <p className="signup-link">
+        Already have an account?{" "}
+        <Link to="/" className="up">
+          Login
+        </Link>
+      </p>
+    </form>
+  </div>
+);
 }
 
 export default Register;

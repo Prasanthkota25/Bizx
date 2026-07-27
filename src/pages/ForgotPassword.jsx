@@ -60,67 +60,141 @@ function ForgotPassword() {
     } catch (error) {
 
       alert(
-      error.response?.data?.message ||
+        error.response?.data?.message ||
         'Password Reset Failed'
       );
 
     }
   };
 
+  //   return (
+
+  //     <div className="auth-container">
+
+  //       <div className="auth-card">
+
+  //         <h2 className="text-center mb-4">
+  //           Forgot Password
+  //         </h2>
+
+  //         <input
+  //           type="text"
+  //           name="username"
+  //           placeholder="Username"
+  //           className="form-control mb-3"
+  //           value={formData.username}
+  //           onChange={handleChange}
+  //         />
+
+  //         <input
+  //           type="password"
+  //           name="password"
+  //           placeholder="New Password"
+  //           className="form-control mb-3"
+  //           value={formData.password}
+  //           onChange={handleChange}
+  //         />
+
+  //         <input
+  //           type="password"
+  //           name="confirmPassword"
+  //           placeholder="Confirm Password"
+  //           className="form-control mb-3"
+  //           value={formData.confirmPassword}
+  //           onChange={handleChange}
+  //         />
+
+  //         <button
+  //           className="btn btn-warning w-100 mb-3"
+  //           onClick={handleResetPassword}
+  //         >
+  //           Reset Password
+  //         </button>
+
+  //         <Link to="/">
+  //           <button className="btn btn-primary w-100">
+  //             Back To Login
+  //           </button>
+  //         </Link>
+
+  //       </div>
+
+  //     </div>
+  //   );
+  // }
+
+
   return (
-
     <div className="auth-container">
+      <form
+        className="form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleResetPassword();
+        }}
+      >
+        <div className="form-title">
+          <span>recover your</span>
+        </div>
 
-      <div className="auth-card">
+        <div className="title-2">
+          <span>Bizx</span>
+        </div>
+        <section className="bg-stars">
+          <span className="star"></span>
+          <span className="star"></span>
+          <span className="star"></span>
+          <span className="star"></span>
+        </section>
 
-        <h2 className="text-center mb-4">
-          Forgot Password
-        </h2>
+        <div className="input-container">
+          <input
+            className="input-mail"
+            type="text"
+            name="username"
+            placeholder="Enter Username"
+            value={formData.username}
+            onChange={handleChange}
+          />
+        </div>
 
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          className="form-control mb-3"
-          value={formData.username}
-          onChange={handleChange}
-        />
 
-        <input
-          type="password"
-          name="password"
-          placeholder="New Password"
-          className="form-control mb-3"
-          value={formData.password}
-          onChange={handleChange}
-        />
 
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          className="form-control mb-3"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-        />
+        <div className="input-container">
+          <input
+            className="input-pwd"
+            type="password"
+            name="password"
+            placeholder="New Password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
 
-        <button
-          className="btn btn-warning w-100 mb-3"
-          onClick={handleResetPassword}
-        >
-          Reset Password
+        <div className="input-container">
+          <input
+            className="input-pwd"
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button type="submit" className="submit">
+          <span className="sign-text">
+            Reset Password
+          </span>
         </button>
 
-        <Link to="/">
-          <button className="btn btn-primary w-100">
+        <p className="signup-link">
+          <Link to="/" className="up">
             Back To Login
-          </button>
-        </Link>
-
-      </div>
-
+          </Link>
+        </p>
+      </form>
     </div>
   );
 }
-
 export default ForgotPassword;
