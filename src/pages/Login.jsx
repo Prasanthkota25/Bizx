@@ -101,7 +101,8 @@ function Login() {
 // }
 
   return (
-    <div className="auth-container">
+    // <div className="auth-container">
+    <div className="auth-container login-container">
       <form
         className="form"
         onSubmit={(e) => {
