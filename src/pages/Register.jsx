@@ -200,7 +200,7 @@ function Register() {
 
 
 return (
-  <div className="auth-container">
+  <div className="auth-container register-container">
     <form
       className="form register-form"
       onSubmit={(e) => {

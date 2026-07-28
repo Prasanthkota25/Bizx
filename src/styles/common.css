@@ -9,6 +9,10 @@ html {
       
 }
 
+body:has(.auth-container) {
+    padding-top: 0 !important;
+}
+
 body {
     margin: 0;
     padding-top: 40px;

@@ -125,7 +125,7 @@ function ForgotPassword() {
 
 
   return (
-    <div className="auth-container">
+    <div className="auth-container ">
       <form
         className="form"
         onSubmit={(e) => {
