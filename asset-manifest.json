@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Bizx/static/css/main.4b9f5a13.css",
-    "main.js": "/Bizx/static/js/main.d5496b56.js",
+    "main.css": "/Bizx/static/css/main.cbb35001.css",
+    "main.js": "/Bizx/static/js/main.65e4e193.js",
     "static/media/fontawesome-webfont.svg?v=4.7.0": "/Bizx/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
     "static/media/login-bg-v2.png": "/Bizx/static/media/login-bg-v2.6fe26ab3b5f1cf81dcd4.png",
     "static/media/bootstrap-icons.woff?": "/Bizx/static/media/bootstrap-icons.1295669cd4e305c97f2c.woff",
@@ -83,11 +83,11 @@
     "static/media/roboto-greek-ext-700-normal.woff": "/Bizx/static/media/roboto-greek-ext-700-normal.5b51dabd754d1b37053e.woff",
     "static/media/roboto-greek-ext-300-normal.woff": "/Bizx/static/media/roboto-greek-ext-300-normal.7e59ad18b38575208130.woff",
     "index.html": "/Bizx/index.html",
-    "main.4b9f5a13.css.map": "/Bizx/static/css/main.4b9f5a13.css.map",
-    "main.d5496b56.js.map": "/Bizx/static/js/main.d5496b56.js.map"
+    "main.cbb35001.css.map": "/Bizx/static/css/main.cbb35001.css.map",
+    "main.65e4e193.js.map": "/Bizx/static/js/main.65e4e193.js.map"
   },
   "entrypoints": [
-    "static/css/main.4b9f5a13.css",
-    "static/js/main.d5496b56.js"
+    "static/css/main.cbb35001.css",
+    "static/js/main.65e4e193.js"
   ]
 }
