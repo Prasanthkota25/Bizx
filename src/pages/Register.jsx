@@ -101,11 +101,21 @@ function Register() {
 
       navigate('/');
 
-    } catch (error) {
+  //   } catch (error) {
 
-      alert(error.response?.data || 'Registration Failed');
-    }
-  };
+  //     alert(error.response?.data || 'Registration Failed');
+  //   }
+  // };
+
+
+     } catch (error) {
+  alert(
+    error.response?.data?.message ||
+    error.response?.data ||
+    "Registration Failed"
+  );
+}
+  }
 
 //   return (
 
@@ -199,14 +209,14 @@ function Register() {
 
 
 
-return (
+return (  
   <div className="auth-container register-container">
     <form
       className="form register-form"
       onSubmit={(e) => {
         e.preventDefault();
         handleRegister();
-      }}
+      }} 
     >
       <div className="form-title">
         <span>create your</span>
