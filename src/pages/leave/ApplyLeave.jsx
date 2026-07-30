@@ -387,16 +387,34 @@ const [orderBy, setOrderBy] = useState('fromDate');
             }
 
             // Manager approved cancellation
-            if (item.status === "CANCELLED") {
-              return [
-                {
-                  ...base,
-                  requestType: "CANCEL",
-                  displayStatus: "Approved"
-                }
-              ];
-            }
+            // if (item.status === "CANCELLED") {
+            //   return [
+            //     {
+            //       ...base,
+            //       requestType: "CANCEL",
+            //       displayStatus: "Approved"
+            //     }
+            //   ];
+            // }
 
+
+            // Manager approved cancellation
+if (item.status === "CANCELLED") {
+  return [
+    {
+      ...base,
+      id: `${item.id}-cancel`,
+      requestType: "CANCEL",
+      displayStatus: "Approved"
+    },
+    {
+      ...base,
+      id: `${item.id}-leave`,
+      requestType: "LEAVE",
+      displayStatus: "Cancelled"
+    }
+  ];
+}
             // Approved Leave
             if (item.status === "APPROVED") {
               return [
@@ -1045,16 +1063,33 @@ const [orderBy, setOrderBy] = useState('fromDate');
                   ];
                 }
 
+                // if (item.status === "CANCELLED") {
+                //   return [
+                //     {
+                //       ...base,
+                //       id: `${item.id}-leave`,
+                //       requestType: "LEAVE",
+                //       displayStatus: "Cancelled"
+                //     }
+                //   ];
+                // }
+
                 if (item.status === "CANCELLED") {
-                  return [
-                    {
-                      ...base,
-                      id: `${item.id}-leave`,
-                      requestType: "LEAVE",
-                      displayStatus: "Cancelled"
-                    }
-                  ];
-                }
+  return [
+    {
+      ...base,
+      id: `${item.id}-cancel`,
+      requestType: "CANCEL",
+      displayStatus: "Approved"
+    },
+    {
+      ...base,
+      id: `${item.id}-leave`,
+      requestType: "LEAVE",
+      displayStatus: "Cancelled"
+    }
+  ];
+}
 
                 return [
                   {
@@ -1335,27 +1370,46 @@ const [orderBy, setOrderBy] = useState('fromDate');
 
 
 
-  const getApproverRemarks = (item) => {
+  // const getApproverRemarks = (item) => {
 
 
-    if (item.status === 'PENDING' || item.status === 'APPLIED') {
-      return '';
-    }
+  //   if (item.status === 'PENDING' || item.status === 'APPLIED') {
+  //     return '';
+  //   }
 
-    if (item.status === 'CANCEL_REQUESTED') {
-      return '';
-    }
+  //   if (item.status === 'CANCEL_REQUESTED') {
+  //     return '';
+  //   }
 
-    if (item.status === 'APPROVED' || item.status === 'REJECTED' || item.status === 'CANCELLED') {
-      return item.approverRemarks || '-';
-    }
+  //   if (item.status === 'APPROVED' || item.status === 'REJECTED' || item.status === 'CANCELLED') {
+  //     return item.approverRemarks || '-';
+  //   }
 
-    return '-';
-  };
-
-
+  //   return '-';
+  // };
 
 
+
+const getApproverRemarks = (item) => {
+
+  if (
+    item.status === "PENDING" ||
+    item.status === "APPLIED" ||
+    item.status === "CANCEL_REQUESTED"
+  ) {
+    return "";
+  }
+
+  // Hide remark on cancelled leave row
+  if (
+    item.requestType === "LEAVE" &&
+    item.displayStatus === "Cancelled"
+  ) {
+    return "-";
+  }
+
+  return item.approverRemarks || "-";
+};
 
   const shouldDisableToDate = (date) => {
     if (!date || !form.fromDate) return false;
@@ -2292,9 +2346,15 @@ return compareLatestLeave(a, b);
 
 
 
-                        <td>
+                        {/* <td>
                           {getApproverRemarks(item)}
-                        </td>
+                        </td> */}
+
+                        <td className="approver-remarks">
+  <div className="remarks-text">
+    {getApproverRemarks(item)}
+  </div>
+</td>
 
 
 

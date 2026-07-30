@@ -61,16 +61,33 @@ const buildManagerHistory = (data) => {
   ];
 }
     // Cancelled
+    // if (item.status === "CANCELLED") {
+    //   return [
+    //     {
+    //       ...base,
+    //       requestType: "CANCEL",
+    //       displayStatus: "Approved",
+    //       uniqueId: `${item.id}-cancelled`
+    //     }
+    //   ];
+    // }
+
     if (item.status === "CANCELLED") {
-      return [
-        {
-          ...base,
-          requestType: "CANCEL",
-          displayStatus: "Approved",
-          uniqueId: `${item.id}-cancelled`
-        }
-      ];
+  return [
+    {
+      ...base,
+      requestType: "CANCEL",
+      displayStatus: "Approved",
+      uniqueId: `${item.id}-cancel`
+    },
+    {
+      ...base,
+      requestType: "LEAVE",
+      displayStatus: "Cancelled",
+      uniqueId: `${item.id}-leave`
     }
+  ];
+}
 
     // Approved
     if (item.status === "APPROVED") {
@@ -375,24 +392,37 @@ else if (statusFilter === 'CANCELLED') {
 
 
 
-              setLeaves(prev =>
-  prev.map(l =>
-    l.id === id
-      ? {
-          ...l,
-          status:
-            action === 'APPROVE'
-              ? 'CANCELLED'
-              : 'APPROVED',
-          displayStatus:
-            action === 'APPROVE'
-              ? 'Cancelled'
-              : 'Approved',
-          approverRemarks: remarks
-        }
-      : l
-  )
+//               setLeaves(prev =>
+//   prev.map(l =>
+//     l.id === id
+//       ? {
+//           ...l,
+//           status:
+//             action === 'APPROVE'
+//               ? 'CANCELLED'
+//               : 'APPROVED',
+//           displayStatus:
+//             action === 'APPROVE'
+//               ? 'Cancelled'
+//               : 'Approved',
+//           approverRemarks: remarks
+//         }
+//       : l
+//   )
+// );
+
+const refreshed = await API.get('/leave/team', {
+  headers: {
+    managerId: localStorage.getItem("userId")
+  }
+});
+
+const formattedData = buildManagerHistory(
+  refreshed.data || []
 );
+
+setLeaves(formattedData);
+setFiltered(formattedData);
               showSnackbar(
                 action === 'APPROVE'
                   ? "Leave cancellation approved"
@@ -950,6 +980,27 @@ else if (statusFilter === 'CANCELLED') {
   console.log("Filtered:", filtered);
   console.log("Paginated Data:", paginatedData);
 
+
+
+
+  const getApproverRemarks = (item) => {
+
+  if (
+    item.displayStatus === "Applied"
+  ) {
+    return "";
+  }
+
+  if (
+    item.requestType === "LEAVE" &&
+    item.displayStatus === "Cancelled"
+  ) {
+    return "";
+  }
+
+  return item.approverRemarks || "-";
+};
+
   return (
     <Layout>
       <div className="container-fluid projectAccounting leave-page">
@@ -1363,7 +1414,7 @@ else if (statusFilter === 'CANCELLED') {
 
 
 
-                        <td>
+                        {/* <td>
   {(item.requestType === "CANCEL" &&
     item.displayStatus === "Applied") ||
 
@@ -1393,7 +1444,41 @@ else if (statusFilter === 'CANCELLED') {
     item.approverRemarks || ""
 
   )}
+</td> */}
+
+
+<td className="approver-remarks">
+
+  {(item.requestType === "CANCEL" &&
+    item.displayStatus === "Applied") ||
+
+   (item.requestType === "LEAVE" &&
+    item.displayStatus === "Applied") ? (
+
+    <input
+      type="text"
+      className="form-control"
+      placeholder="Remarks"
+      value={remarksMap[item.id] || ''}
+      onChange={(e) =>
+        setRemarksMap(prev => ({
+          ...prev,
+          [item.id]: e.target.value
+        }))
+      }
+    />
+
+  ) : (
+
+    <div className="remarks-text">
+      {getApproverRemarks(item)}
+    </div>
+
+  )}
+
 </td>
+
+
 {/* <td>
   {(item.requestType === "CANCEL" &&
     item.displayStatus === "Applied") ||
