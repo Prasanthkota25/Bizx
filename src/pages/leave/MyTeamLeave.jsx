@@ -142,6 +142,9 @@ function MyTeamLeave() {
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('');
 
+
+  const [managerId, setManagerId] = useState(null);
+
   const [snackbar, setSnackbar] = useState({
     open: false,
     message: '',
@@ -172,8 +175,11 @@ function MyTeamLeave() {
           return;
         }
 
+        // if (user.role && user.role.trim().toUpperCase() === 'MANAGER') {
+        //   setIsManager(true);
         if (user.role && user.role.trim().toUpperCase() === 'MANAGER') {
-          setIsManager(true);
+  setIsManager(true);
+  setManagerId(user.id);
           // const leaveResponse = await API.get(`/leave/team/${user.id}`);
           const leaveResponse = await API.get('/leave/team', {
             headers: {
@@ -413,9 +419,15 @@ else if (statusFilter === 'CANCELLED') {
 
 const refreshed = await API.get('/leave/team', {
   headers: {
-    managerId: localStorage.getItem("userId")
+    managerId: managerId
   }
 });
+
+// const refreshed = await API.get('/leave/team', {
+//   headers: {
+//     managerId: localStorage.getItem("userId")
+//   }
+// });
 
 const formattedData = buildManagerHistory(
   refreshed.data || []
@@ -430,9 +442,22 @@ setFiltered(formattedData);
                 "success"
               );
 
-            } catch {
-              showSnackbar("Failed to process cancel", "error");
-            }
+            // } catch {
+            //   showSnackbar("Failed to process cancel", "error");
+            // }
+            } catch (error) {
+
+  console.error(
+    "Cancel Decision Error",
+    error.response?.data || error
+  );
+
+  showSnackbar(
+    error?.response?.data?.message ||
+    "Failed to process cancel",
+    "error"
+  );
+}
           }}
         >
           YES
