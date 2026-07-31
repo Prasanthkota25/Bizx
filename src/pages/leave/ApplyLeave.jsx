@@ -1405,10 +1405,10 @@ const getApproverRemarks = (item) => {
     item.requestType === "LEAVE" &&
     item.displayStatus === "Cancelled"
   ) {
-    return "-";
+    return "";
   }
 
-  return item.approverRemarks || "-";
+  return item.approverRemarks || "";
 };
 
   const shouldDisableToDate = (date) => {
