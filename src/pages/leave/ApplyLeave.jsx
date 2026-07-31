@@ -195,47 +195,47 @@ const safeCreatedTime = (value) => {
   return Number.isNaN(t) ? 0 : t;
 };
 
-// //Sorting Logic fifo
-// const compareNewestFirst = (a, b) => {
-//   const ta = safeCreatedTime(a.createdAt);
-//   const tb = safeCreatedTime(b.createdAt);
+//Sorting Logic fifo
+const compareNewestFirst = (a, b) => {
+  const ta = safeCreatedTime(a.createdAt);
+  const tb = safeCreatedTime(b.createdAt);
 
-//   if (ta !== tb) return tb - ta;
+  if (ta !== tb) return tb - ta;
 
-//   const ida = Number(a.sortId ?? a.id) || 0;
-//   const idb = Number(b.sortId ?? b.id) || 0;
-//   return idb - ida;
-// };
-
-// const sortByLatest = (data) => {
-//   return [...data].sort(compareNewestFirst);
-// };
-
-
-
-const compareLatestLeave = (a, b) => {
-  const ta = new Date(a.fromDate).getTime();
-  const tb = new Date(b.fromDate).getTime();
-
-  if (ta !== tb) {
-    return tb - ta; // Latest date first
-  }
-
-  return (Number(b.id) || 0) - (Number(a.id) || 0);
+  const ida = Number(a.sortId ?? a.id) || 0;
+  const idb = Number(b.sortId ?? b.id) || 0;
+  return idb - ida;
 };
 
 const sortByLatest = (data) => {
-  return [...data].sort(compareLatestLeave);
+  return [...data].sort(compareNewestFirst);
 };
+
+
+
+// const compareLatestLeave = (a, b) => {
+//   const ta = new Date(a.fromDate).getTime();
+//   const tb = new Date(b.fromDate).getTime();
+
+//   if (ta !== tb) {
+//     return tb - ta; // Latest date first
+//   }
+
+//   return (Number(b.id) || 0) - (Number(a.id) || 0);
+// };
+
+// const sortByLatest = (data) => {
+//   return [...data].sort(compareLatestLeave);
+// };
 
 function ApplyLeave() {
 
-  // const [order, setOrder] = useState('desc');
-  // const [orderBy, setOrderBy] = useState('createdAt');
-
-
   const [order, setOrder] = useState('desc');
-const [orderBy, setOrderBy] = useState('fromDate');
+  const [orderBy, setOrderBy] = useState('createdAt');
+
+
+//   const [order, setOrder] = useState('desc');
+// const [orderBy, setOrderBy] = useState('fromDate');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
@@ -1476,76 +1476,65 @@ const getApproverRemarks = (item) => {
 
 
   //table Sorting Logic
-  const sortedHistory = [...history].sort((a, b) => {
-    let valA;
-    let valB;
+const sortedHistory = [...history].sort((a, b) => {
+  let valA;
+  let valB;
 
-    switch (orderBy) {
-      case "leaveType":
-        valA = (a.leaveType || "").toLowerCase();
-        valB = (b.leaveType || "").toLowerCase();
-        break;
+  switch (orderBy) {
+    case "createdAt":
+      valA = safeCreatedTime(a.createdAt);
+      valB = safeCreatedTime(b.createdAt);
+      break;
 
-      case "fromDate":
-        valA = safeCreatedTime(a.fromDate);
-        valB = safeCreatedTime(b.fromDate);
-        break;
+    case "leaveType":
+      valA = (a.leaveType || "").toLowerCase();
+      valB = (b.leaveType || "").toLowerCase();
+      break;
 
-      case "toDate":
-        valA = safeCreatedTime(a.toDate);
-        valB = safeCreatedTime(b.toDate);
-        break;
-      // case "status":
-      //   valA = (a.status || "").toLowerCase();
-      //   valB = (b.status || "").toLowerCase();
-      //   break;
-      case "status":
-  valA = (a.displayStatus || a.status || "").toLowerCase();
-  valB = (b.displayStatus || b.status || "").toLowerCase();
-  break;
+    case "fromDate":
+      valA = safeCreatedTime(a.fromDate);
+      valB = safeCreatedTime(b.fromDate);
+      break;
 
-      case "requestType":
-        valA = (getRequestType(a) || "").toLowerCase();
-        valB = (getRequestType(b) || "").toLowerCase();
-        break;
+    case "toDate":
+      valA = safeCreatedTime(a.toDate);
+      valB = safeCreatedTime(b.toDate);
+      break;
 
-      case "days":
-        valA = Number(a.days || 0);
-        valB = Number(b.days || 0);
-        break;
+    case "status":
+      valA = (a.displayStatus || a.status || "").toLowerCase();
+      valB = (b.displayStatus || b.status || "").toLowerCase();
+      break;
 
-      case "reason":
-        valA = (a.reason || "").toLowerCase();
-        valB = (b.reason || "").toLowerCase();
-        break;
+    case "requestType":
+      valA = (getRequestType(a) || "").toLowerCase();
+      valB = (getRequestType(b) || "").toLowerCase();
+      break;
 
-      // case "createdAt":
-      // default:
-      //   if (order === 'asc') {
-      //     return -compareNewestFirst(a, b);
-      //   }
-      //   return compareNewestFirst(a, b);
-      default:
-  if (order === 'asc') {
-    return new Date(a.fromDate).getTime() -
-           new Date(b.fromDate).getTime();
+    case "days":
+      valA = Number(a.days || 0);
+      valB = Number(b.days || 0);
+      break;
+
+    case "reason":
+      valA = (a.reason || "").toLowerCase();
+      valB = (b.reason || "").toLowerCase();
+      break;
+
+    default:
+      return compareNewestFirst(a, b);
   }
 
-  return new Date(b.fromDate).getTime() -
-         new Date(a.fromDate).getTime();
-    }
+  if (valA < valB) {
+    return order === "asc" ? -1 : 1;
+  }
 
-    // if (valA < valB) return order === "asc" ? -1 : 1;
-    // if (valA > valB) return order === "asc" ? 1 : -1;
+  if (valA > valB) {
+    return order === "asc" ? 1 : -1;
+  }
 
-    // // Tie-break: newest always first
-    // return compareNewestFirst(a, b);
-    if (valA < valB) return order === "asc" ? -1 : 1;
-if (valA > valB) return order === "asc" ? 1 : -1;
-
-// Tie-break: latest From Date first
-return compareLatestLeave(a, b);
-  });
+  return compareNewestFirst(a, b);
+});
   const paginatedHistory = sortedHistory.slice(
     (currentPage - 1) * pageSize,
     currentPage * pageSize
