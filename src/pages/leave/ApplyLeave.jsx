@@ -1751,37 +1751,7 @@ const sortedHistory = [...history].sort((a, b) => {
 
                 </div>
 
-                {/*  Session — only enabled when exactly 1 working day */}
-                {/* <div className="col-md-3 mb-3">
-                  <label className="form-label">
-                    Session
-                    {!isSingleWorkingDay && form.fromDate && form.toDate && (
-                      <small className="text-muted ms-2">(only for single day)</small>
-                    )}
-                  </label>
-                  <select
-                    className="form-select"
-                    value={form.session}
-                    // disabled={!isSingleWorkingDay}
-                    disabled={!isHalfDayAllowed}
-                    onChange={(e) =>
-                      setForm({
-                        ...form,
-                        session: e.target.value
-                      })
-                    }
-                  >
-                    <option value="FULL">Full Day</option>
-
-                    {/* {isSingleWorkingDay && ( *
-                    {isHalfDayAllowed && (
-                      <>
-                        <option value="FIRST_HALF">First Half</option>
-                        <option value="SECOND_HALF">Second Half</option>
-                      </>
-                    )}
-                  </select>
-                </div> */}
+             
 
                 {showSession && (
                   <div className="col-md-3 mb-3">
@@ -1970,77 +1940,6 @@ const sortedHistory = [...history].sort((a, b) => {
 
                   </div>
                 </div>
-                {/* 
-                {leaveType === "Adoption Leave" && (
-                  <>
-                    <div className="col-md-3 mb-3">
-                      <label className="form-label">
-                        Adoption Date <span className="required">*</span>
-                      </label>
-
-                      <DatePicker
-                        format="DD-MM-YYYY"
-                        value={
-                          form.adoptionDate
-                            ? dayjs(form.adoptionDate)
-                            : null
-                        }
-                        onChange={(newValue) =>
-                          setForm({
-                            ...form,
-                            adoptionDate: newValue
-                              ? newValue.format("YYYY-MM-DD")
-                              : ""
-                          })
-                        }
-                        slotProps={{
-                          textField: {
-                            fullWidth: true
-                          }
-                        }}
-                      />
-                    </div>
-
-                    <div className="col-md-3 mb-3">
-                      <label className="form-label">
-                        Child Age (Months)
-                        <span className="required">*</span>
-                      </label>
-
-                      <input
-                        type="number"
-                        className="form-control"
-                        value={form.childAgeInMonths}
-                        onChange={(e) =>
-                          setForm({
-                            ...form,
-                            childAgeInMonths: e.target.value
-                          })
-                        }
-                      />
-                    </div>
-
-                    <div className="col-md-3 mb-3">
-                      <label className="form-label">
-                        Adoption Document
-                        <span className="required">*</span>
-                      </label>
-
-                      <input
-                        type="text"
-                        className="form-control"
-                        value={form.adoptionDocument}
-                        onChange={(e) =>
-                          setForm({
-                            ...form,
-                            adoptionDocument: e.target.value
-                          })
-                        }
-                        placeholder="Enter document reference"
-                      />
-                    </div>
-                  </>
-                )} */}
 
                 <div className="col-md-3 mb-3" >
 

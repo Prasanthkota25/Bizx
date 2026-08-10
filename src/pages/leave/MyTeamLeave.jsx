@@ -384,50 +384,14 @@ else if (statusFilter === 'CANCELLED') {
             try {
               await API.put(`/leave/cancel-decision/${id}/${action}`, { remarks });
 
-              // setLeaves(prev =>
-              //   prev.map(l =>
-              //     l.id === id
-              //       ? {
-              //         ...l,
-              //         status: action === 'APPROVE' ? 'CANCELLED' : 'APPROVED',
-              //         approverRemarks: remarks
-              //       }
-              //       : l
-              //   )
-              // );
-
-
-
-//               setLeaves(prev =>
-//   prev.map(l =>
-//     l.id === id
-//       ? {
-//           ...l,
-//           status:
-//             action === 'APPROVE'
-//               ? 'CANCELLED'
-//               : 'APPROVED',
-//           displayStatus:
-//             action === 'APPROVE'
-//               ? 'Cancelled'
-//               : 'Approved',
-//           approverRemarks: remarks
-//         }
-//       : l
-//   )
-// );
-
+   
 const refreshed = await API.get('/leave/team', {
   headers: {
     managerId: managerId
   }
 });
 
-// const refreshed = await API.get('/leave/team', {
-//   headers: {
-//     managerId: localStorage.getItem("userId")
-//   }
-// });
+
 
 const formattedData = buildManagerHistory(
   refreshed.data || []
@@ -442,9 +406,7 @@ setFiltered(formattedData);
                 "success"
               );
 
-            // } catch {
-            //   showSnackbar("Failed to process cancel", "error");
-            // }
+           
             } catch (error) {
 
   console.error(
@@ -493,13 +455,7 @@ setFiltered(formattedData);
             try {
               await API.put(`/leave/approve/${id}`, { remarks });
 
-              // setLeaves(prev =>
-              //   prev.map(l =>
-              //     l.id === id
-              //       ? { ...l, status: 'APPROVED', approverRemarks: remarks }
-              //       : l
-              //   )
-              // );
+        
               setLeaves(prev =>
   prev.map(l =>
     l.id === id
@@ -552,13 +508,7 @@ setFiltered(formattedData);
             try {
               await API.put(`/leave/reject/${id}`, { remarks });
 
-              // setLeaves(prev =>
-              //   prev.map(l =>
-              //     l.id === id
-              //       ? { ...l, status: 'REJECTED', approverRemarks: remarks }
-              //       : l
-              //   )
-              // );
+           
               setLeaves(prev =>
   prev.map(l =>
     l.id === id
@@ -606,22 +556,6 @@ setFiltered(formattedData);
     return `${day}-${month}-${year}`;
   };
 
-  // const getStatusClass = (status) => {
-  //   const normalized = normalizeStatus(status);
-  //   if (normalized === 'APPROVED') return 'status-approved';
-  //   if (normalized === 'REJECTED') return 'status-rejected';
-  //   if (normalized === 'CANCELLED') return 'status-cancelled';
-  //   return 'status-pending';
-  // };
-
-
-
-  // const normalizeStatus = (status) => {
-  //   if (!status || status === 'PENDING') {
-  //     return 'Applied';
-  //   }
-  //   return status;
-  // };
   const normalizeStatus = (item) => {
     const status = item?.status;
 
@@ -636,25 +570,6 @@ setFiltered(formattedData);
     return status;
   };
 
-  // const isActionAllowed = (item) => {
-  //   const status = normalizeStatus(item);
-  //   return status === 'Applied' || status === 'CANCEL_REQUESTED';
-  // };
-
-  // const isActionAllowed = (item) => {
-  //   return item.displayStatus === "Applied";
-  // };
-
-  // const formatStatus = (status) => {
-  //   if (!status) return '';
-
-  //   return status
-  //     .toLowerCase()
-  //     .replace(/_/g, ' ')
-  //     .replace(/\b\w/g, char => char.toUpperCase());
-  // };
-
-
 
   const formatStatus = (status) => {
     if (!status) return '';
@@ -668,25 +583,12 @@ setFiltered(formattedData);
       .replace(/\b\w/g, char => char.toUpperCase());
   };
 
-  // const getRequestType = (item) => {
-  //   const normalized = normalizeStatus(item);
-  //     if (normalized === 'CANCELLED' || normalized === 'CANCEL_REQUESTED') {
-  //       return 'Cancel Application';
-  //     }
-  //     return 'Leave Application';
-  //   };
 
   const getRequestType = (item) => {
     return item.requestType === 'CANCEL'
       ? 'Cancel Application'
       : 'Leave Application';
   };
-  // const getRequestType = (item) => {
-  //   if (item.status === 'CANCEL_REQUESTED') {
-  //     return 'Cancel Application';
-  //   }
-  //   return 'Leave Application';
-  // };
 
   const [expandedRows, setExpandedRows] = useState({});
   const toggleReason = (id) => {
@@ -695,33 +597,6 @@ setFiltered(formattedData);
       [id]: !prev[id]
     }));
   };
-
-
-
-  // const handleDownloadPDF = async () => {
-  //   const input = document.getElementById("leave-table");
-
-  //   if (!input) {
-  //     showSnackbar("Table not found", "error");
-  //     return;
-  //   }
-
-  //   const canvas = await html2canvas(input, {
-  //     scale: 2
-  //   });
-
-  //   const imgData = canvas.toDataURL("image/png");
-
-  //   const pdf = new jsPDF("p", "mm", "a4");
-
-  //   const imgWidth = 190;
-  //   const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-  //   let position = 10;
-
-  //   pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
-  //   pdf.save("MyTeamLeave.pdf");
-  // };
 
   const handleDownloadExcel = () => {
     if (!filtered || filtered.length === 0) {
@@ -776,117 +651,6 @@ setFiltered(formattedData);
     setSnackbar(prev => ({ ...prev, open: false }));
   };
 
-  // const handleRequestSort = (property) => {
-  //   const isAsc = orderBy === property && order === 'asc';
-  //   const newOrder = isAsc ? 'desc' : 'asc';
-
-  //   setOrder(newOrder);
-  //   setOrderBy(property);
-
-  //   let data = [...leaves]; // ✅ always start from original
-
-  //   // ✅ APPLY FILTER
-  //   if (statusFilter) {
-  //     if (statusFilter === 'PENDING') {
-  //       data = data.filter((leave) => normalizeStatus(leave) === 'Applied');
-  //     } else {
-  //       data = data.filter((leave) => leave.status === statusFilter);
-  //     }
-  //   }
-
-  //   // ✅ APPLY SEARCH
-  //   if (search.trim().length >= 3) {
-  //     const q = search.toLowerCase();
-  //     data = data.filter(
-  //       (leave) =>
-  //         String(leave.userId ?? '').toLowerCase().includes(q) ||
-  //         leave.username?.toLowerCase().includes(q) ||
-  //         leave.leaveType?.toLowerCase().includes(q) ||
-  //         leave.reason?.toLowerCase().includes(q)
-  //     );
-  //   }
-
-  //   // ✅ APPLY SORT
-  //   data.sort((a, b) => {
-  //     let valA;
-  //     let valB;
-
-  //     switch (property) {
-  //       case 'employee':
-  //         valA = formatName(a.username || '').toLowerCase();
-  //         valB = formatName(b.username || '').toLowerCase();
-  //         break;
-
-  //       case 'userId':
-  //         valA = parseInt(a.userId) || 0;
-  //         valB = parseInt(b.userId) || 0;
-  //         break;
-
-  //       case 'requestType':
-  //         valA = (getRequestType(a) || '').toLowerCase();
-  //         valB = (getRequestType(b) || '').toLowerCase();
-  //         break;
-
-  //       case 'phone':
-  //         valA = parseInt((a.phone || '').replace(/\D/g, '')) || 0;
-  //         valB = parseInt((b.phone || '').replace(/\D/g, '')) || 0;
-  //         break;
-
-  //       case 'appliedOn':
-  //         valA = a.appliedOn ? new Date(a.appliedOn).getTime() : 0;
-  //         valB = b.appliedOn ? new Date(b.appliedOn).getTime() : 0;
-  //         break;
-
-  //       case 'leaveType':
-  //         valA = (a.leaveType || '').toLowerCase();
-  //         valB = (b.leaveType || '').toLowerCase();
-  //         break;
-
-  //       case 'fromDate':
-  //         valA = a.fromDate ? new Date(a.fromDate).getTime() : 0;
-  //         valB = b.fromDate ? new Date(b.fromDate).getTime() : 0;
-  //         break;
-
-  //       case 'toDate':
-  //         valA = a.toDate ? new Date(a.toDate).getTime() : 0;
-  //         valB = b.toDate ? new Date(b.toDate).getTime() : 0;
-  //         break;
-
-  //       case 'days':
-  //         valA = Number(a.days || 0);
-  //         valB = Number(b.days || 0);
-  //         break;
-
-  //       case 'status':
-  //         valA = (a.status || '').toLowerCase();
-  //         valB = (b.status || '').toLowerCase();
-  //         break;
-
-  //       case 'reason':
-  //         valA = (a.reason || '').toLowerCase();
-  //         valB = (b.reason || '').toLowerCase();
-  //         break;
-
-  //       case 'approverRemarks':
-  //         valA = (a.approverRemarks || '').toLowerCase();
-  //         valB = (b.approverRemarks || '').toLowerCase();
-  //         break;
-
-  //       default:
-  //         valA = a[property];
-  //         valB = b[property];
-  //     }
-
-  //     if (valA < valB) return newOrder === 'asc' ? -1 : 1;
-  //     if (valA > valB) return newOrder === 'asc' ? 1 : -1;
-
-  //     // return (b.id || 0) - (a.id || 0); // tie-break
-  //     return 0;
-  //   });
-
-
-  //   setFiltered(data);
-  // };
 
   const handleRequestSort = (property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -982,18 +746,6 @@ setFiltered(formattedData);
   );
 
 
-
-
-  //   useEffect(() => {
-  //   if (currentPage > totalPages) {
-  //     setCurrentPage(1);
-  //   }
-  // }, [currentPage, totalPages]);
-
-
-  // useEffect(() => {
-  //   setCurrentPage(1);
-  // }, [filtered.length]);
 
   console.log("Total rows:", filtered.length);
   console.log("Page size:", pageSize);
@@ -1418,58 +1170,6 @@ setFiltered(formattedData);
                           ) : '-'}
                         </td>
 
-                        {/* <td>{item.approverRemarks || '-'}</td> */}
-                        {/* <td>
-{(normalizeStatus(item) === 'Applied' || normalizeStatus(item) === 'CANCEL_REQUESTED') && isManager ? (                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Remarks"
-                              value={remarksMap[item.id] || ''}
-                              onChange={(e) =>
-                                setRemarksMap(prev => ({
-                                  ...prev,
-                                  [item.id]: e.target.value
-                                }))
-                              }
-                            />
-                          ) : (
-                            item.approverRemarks || '-'
-                          )}
-                        </td> */}
-
-
-
-                        {/* <td>
-  {(item.requestType === "CANCEL" &&
-    item.displayStatus === "Applied") ||
-
-   (item.requestType === "LEAVE" &&
-    item.displayStatus === "Applied") ? (
-
-    <input
-      type="text"
-      className="form-control"
-      placeholder="Remarks"
-      value={remarksMap[item.id] || ''}
-      onChange={(e) =>
-        setRemarksMap(prev => ({
-          ...prev,
-          [item.id]: e.target.value
-        }))
-      }
-    />
-
-  ) : item.requestType === "LEAVE" &&
-      item.displayStatus === "Cancelled" ? (
-
-    ""
-
-  ) : (
-
-    item.approverRemarks || ""
-
-  )}
-</td> */}
 
 
 <td className="approver-remarks">
@@ -1503,49 +1203,6 @@ setFiltered(formattedData);
 
 </td>
 
-
-{/* <td>
-  {(item.requestType === "CANCEL" &&
-    item.displayStatus === "Applied") ||
-
-   (item.requestType === "LEAVE" &&
-    item.displayStatus === "Applied") ? (
-
-    <input
-      type="text"
-      className="form-control"
-      placeholder="Remarks"
-      value={remarksMap[item.id] || ''}
-      onChange={(e) =>
-        setRemarksMap(prev => ({
-          ...prev,
-          [item.id]: e.target.value
-        }))
-      }
-    />
-
-  ) : (
-    item.approverRemarks || ""
-  )}
-</td> */}
-                        {/* <td>
-                          {isActionAllowed(item) && isManager ? (
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Remarks"
-                              value={remarksMap[item.id] || ''}
-                              onChange={(e) =>
-                                setRemarksMap(prev => ({
-                                  ...prev,
-                                  [item.id]: e.target.value
-                                }))
-                              }
-                            />
-                          ) : (
-                            item.approverRemarks || '-'
-                          )}
-                        </td> */}
 
 
 <td>
@@ -1610,65 +1267,6 @@ setFiltered(formattedData);
     </div>
   )}
 </td>
-
-                        {/* <td>
-                          {isManager && (
-                            <div className="action-icons">
-
-                              {/* APPROVE *
-                              <button
-                                className={`icon-btn ${isActionAllowed(item) ? '' : 'disabled-btn'}`}
-                                disabled={!isActionAllowed(item)}
-                                onClick={() => {
-                                  // const status = normalizeStatus(item);
-
-                                  // if (status === 'Applied') {
-                                  //   handleApprove(item.id);
-                                  // } else if (status === 'CANCEL_REQUESTED') {
-                                  //   handleCancelDecision(item.id, 'APPROVE');
-                                  // }
-                                  if (item.requestType === "CANCEL") {
-                                    handleCancelDecision(item.id, "APPROVE");
-                                  } else {
-                                    handleApprove(item.id);
-                                  }
-                                }}
-                                title="Approve"
-                              >
-                                <i className="bi bi-check"></i>
-                              </button>
-
-                              {/* REJECT *
-                              <button
-                                className={`icon-btn ${isActionAllowed(item) ? '' : 'disabled-btn'}`}
-                                disabled={!isActionAllowed(item)}
-                                onClick={() => {
-                                  // const status = normalizeStatus(item);
-
-                                  // if (status === 'Applied') {
-                                  //   handleReject(item.id);
-                                  // } else if (status === 'CANCEL_REQUESTED') {
-                                  //   handleCancelDecision(item.id, 'REJECT');
-                                  // }
-                                  if (item.requestType === "CANCEL") {
-                                    handleCancelDecision(item.id, "REJECT");
-                                  } else {
-                                    handleReject(item.id);
-                                  }
-                                }}
-                                title="Reject"
-                              >
-                                <i className="bi bi-x"></i>
-                              </button>
-
-                            </div>
-                          )}
-                        </td> */}
-
-
-
-
-
                       </tr>
 
                     );

@@ -273,7 +273,7 @@ useEffect(() => {
         // Chrome sometimes needs cancel + resume to fully cut audio
         window.speechSynthesis.cancel();
         try {
-            window.speechSynthesis.resume();
+            window.speechSynthesis.resume();   
         } catch {
             /* ignore */
         }
