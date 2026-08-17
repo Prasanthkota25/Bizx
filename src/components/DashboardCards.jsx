@@ -231,7 +231,7 @@ function DashboardCards() {
             key: 'brand-vault',
             label: 'Brand Vault',
             src: '/Brand Vault.png',
-            externalLink: 'https://infics.sharepoint.com/sites/BrandVault/SitePages/Home.aspx '
+            externalLink: ''
         },
         { key: 'core-hr', label: 'Core HR', src: '/Core HR.png', menu: 'Core HR' },
         { key: 'covid-vaccination', label: 'Covid Vaccination', src: '/Covid Vaccination.png', menu: 'Covid Vaccination' },
@@ -241,7 +241,7 @@ function DashboardCards() {
             key: 'infinite-horizons',
             label: 'Infinite Horizons',
             src: '/Infinite Horizons.png',
-            externalLink: 'https://bizx.infinite.com/infinitehorizons/dashboard'
+            externalLink: ''
         },
         { key: 'information-security', label: 'Information Security', src: '/Information Security.png', menu: 'Information Security' },
         { key: 'leave', label: 'Leave', src: '/Leave.png', menu: 'Leave' },

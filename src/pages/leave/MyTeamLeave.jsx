@@ -1195,9 +1195,42 @@ setFiltered(formattedData);
 
   ) : (
 
+    // <div className="remarks-text">
+    //   {getApproverRemarks(item)}
+    // </div>
     <div className="remarks-text">
-      {getApproverRemarks(item)}
-    </div>
+  {getApproverRemarks(item) ? (
+    <>
+      {expandedRows[`remarks-${item.uniqueId}`]
+        ? getApproverRemarks(item)
+        : getApproverRemarks(item).length > 50
+          ? getApproverRemarks(item).substring(0, 50) + "..."
+          : getApproverRemarks(item)
+      }
+
+      {getApproverRemarks(item).length > 50 && (
+        <span
+          className="ms-2 toggle-icon-circle"
+          onClick={() =>
+            setExpandedRows(prev => ({
+              ...prev,
+              [`remarks-${item.uniqueId}`]:
+                !prev[`remarks-${item.uniqueId}`]
+            }))
+          }
+        >
+          {expandedRows[`remarks-${item.uniqueId}`] ? (
+            <i className="bi bi-chevron-up"></i>
+          ) : (
+            <i className="bi bi-chevron-down"></i>
+          )}
+        </span>
+      )}
+    </>
+  ) : (
+    "-"
+  )}
+</div>
 
   )}
 
