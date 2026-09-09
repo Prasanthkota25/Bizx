@@ -217,19 +217,46 @@ function Chatbot({ chatOpen, setChatOpen, setSelectedMenu, menuOptions = {} }) {
             try {
                 const username = localStorage.getItem("username");
 
+                // const res = await API.get(
+                //     `/users/username/${username}`
+                // );
+
+                // setUserName(
+                //     `${res.data.firstname} ${res.data.lastname}`
+                // );
+
+                // setUserDetails(res.data);
+                // // console.log("User Details:", res.data);
+                
+                // console.log("Manager ID:", res.data.managerId);
+
+
+
                 const res = await API.get(
-                    `/users/username/${username}`
-                );
+    `/users/username/${username}`
+);
 
-                setUserName(
-                    `${res.data.firstname} ${res.data.lastname}`
-                );
+setUserName(
+    `${res.data.firstname} ${res.data.lastname}`
+);
 
-                setUserDetails(res.data);
-                // console.log("User Details:", res.data);
-                console.log(JSON.stringify(res.data, null, 2));
-                console.log("Manager ID:", res.data.managerId);
+let userData = { ...res.data };
 
+if (userData.manager) {
+    try {
+        const managerRes = await API.get(
+            `/users/username/${userData.manager}`
+        );
+
+        userData.managerEmployeeId = managerRes.data.id;
+    } catch (err) {
+        console.error("Error fetching manager:", err);
+    }
+}
+
+setUserDetails(userData);
+
+console.log("Manager Employee ID:", userData.managerEmployeeId);
                 const leaveRes = await API.get(
                     `/leave/my/${username}`
                 );
@@ -574,15 +601,25 @@ function Chatbot({ chatOpen, setChatOpen, setSelectedMenu, menuOptions = {} }) {
                 `Hi ${userName}, How can I help you today?`;
         }
 
-        else if (
-            text.includes("manager") &&
-            !text.includes("skip")
-        ) {
-            botResponse = userDetails
-                ? `Manager Name: ${userDetails.managerName || userDetails.manager || "N/A"}
-Manager ID: ${userDetails.managerId || "N/A"}`
-                : "Manager details are not available.";
-        }
+//         else if (
+//             text.includes("manager") &&
+//             !text.includes("skip")
+//         ) {
+//             botResponse = userDetails
+//                 ? `Manager Name: ${userDetails.managerName || userDetails.manager || "N/A"}
+// Manager ID: ${userDetails.managerId || "N/A"}`
+//                 : "Manager details are not available.";
+//         }
+
+else if (
+    text.includes("manager") &&
+    !text.includes("skip")
+) {
+    botResponse = userDetails
+        ? `Manager Name: ${userDetails.manager || "N/A"}
+Manager ID: ${userDetails.managerEmployeeId || "N/A"}`
+        : "Manager details are not available.";
+}
         else if (
             text.includes("profile") ||
             text.includes("account") ||
