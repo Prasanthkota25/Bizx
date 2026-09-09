@@ -226,7 +226,8 @@ useEffect(() => {
                 );
 
                 setUserDetails(res.data);
-                console.log("User Details:", res.data);
+               console.log("User Details:", res.data);
+console.log("Manager ID:", res.data.managerId);
 
                 const leaveRes = await API.get(
                     `/leave/my/${username}`
@@ -572,14 +573,13 @@ console.log("Leave History API:", leaveRes.data);
                 `Hi ${userName}, How can I help you today?`;
         }
 
-        else if (
+else if (
     text.includes("manager") &&
     !text.includes("skip")
 ) {
     botResponse = userDetails
         ? `Manager Name: ${userDetails.managerName || userDetails.manager || "N/A"}
-Manager ID: ${userDetails.managerId || "N/A"}
-Manager Email: ${userDetails.managerEmail || "N/A"}`
+Manager ID: ${userDetails.managerId || "N/A"}`
         : "Manager details are not available.";
 }
         else if (
