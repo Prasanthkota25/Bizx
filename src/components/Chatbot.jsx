@@ -61,7 +61,7 @@ function Chatbot({ chatOpen, setChatOpen, setSelectedMenu, menuOptions = {} }) {
     const navigate = useNavigate();
 
 
-    
+
     const [messages, setMessages] = useState([
         {
             role: "assistant",
@@ -82,45 +82,45 @@ function Chatbot({ chatOpen, setChatOpen, setSelectedMenu, menuOptions = {} }) {
     const utteranceRef = useRef(null);
     const chatbotRef = useRef(null);
     const messagesEndRef = useRef(null);
-useEffect(() => {
-    const handleClickOutside = (event) => {
-        if (
-            chatOpen &&
-            chatbotRef.current &&
-            !chatbotRef.current.contains(event.target)
-        ) {
-            stopSpeaking();
-            stopListening(true);
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                chatOpen &&
+                chatbotRef.current &&
+                !chatbotRef.current.contains(event.target)
+            ) {
+                stopSpeaking();
+                stopListening(true);
 
-            setChatOpen(false);
-            setInput("");
-            setSelectedMenu(null);
-            setIsListening(false);
-            setIsSpeaking(false);
+                setChatOpen(false);
+                setInput("");
+                setSelectedMenu(null);
+                setIsListening(false);
+                setIsSpeaking(false);
 
-            setMessages([
-                {
-                    role: "assistant",
-                    content: "Hello! How can I help you today?"
-                }
-            ]);
-        }
-    };
+                setMessages([
+                    {
+                        role: "assistant",
+                        content: "Hello! How can I help you today?"
+                    }
+                ]);
+            }
+        };
 
-    document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("mousedown", handleClickOutside);
 
-    return () => {
-        document.removeEventListener(
-            "mousedown",
-            handleClickOutside
-        );
-    };
-}, [chatOpen, setChatOpen, setSelectedMenu]);
-useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({
-        behavior: "smooth"
-    });
-}, [messages]);
+        return () => {
+            document.removeEventListener(
+                "mousedown",
+                handleClickOutside
+            );
+        };
+    }, [chatOpen, setChatOpen, setSelectedMenu]);
+    useEffect(() => {
+        messagesEndRef.current?.scrollIntoView({
+            behavior: "smooth"
+        });
+    }, [messages]);
 
     useEffect(() => {
         const SpeechRecognition =
@@ -226,16 +226,17 @@ useEffect(() => {
                 );
 
                 setUserDetails(res.data);
-               console.log("User Details:", res.data);
-console.log("Manager ID:", res.data.managerId);
+                // console.log("User Details:", res.data);
+                console.log(JSON.stringify(res.data, null, 2));
+                console.log("Manager ID:", res.data.managerId);
 
                 const leaveRes = await API.get(
                     `/leave/my/${username}`
                 );
 
-setLeaveHistory(leaveRes.data || []);
+                setLeaveHistory(leaveRes.data || []);
 
-console.log("Leave History API:", leaveRes.data);
+                console.log("Leave History API:", leaveRes.data);
             } catch (error) {
                 console.error("Error fetching user:", error);
             }
@@ -275,7 +276,7 @@ console.log("Leave History API:", leaveRes.data);
         // Chrome sometimes needs cancel + resume to fully cut audio
         window.speechSynthesis.cancel();
         try {
-            window.speechSynthesis.resume();   
+            window.speechSynthesis.resume();
         } catch {
             /* ignore */
         }
@@ -348,15 +349,15 @@ console.log("Leave History API:", leaveRes.data);
 
     const getLeaveBalanceByType = (leaveTypeName) => {
 
-    console.log("Leave Types:", leaveTypes);
-    console.log("Leave History:", leaveHistory);
-    console.log("Checking Leave Type:", leaveTypeName);
+        console.log("Leave Types:", leaveTypes);
+        console.log("Leave History:", leaveHistory);
+        console.log("Checking Leave Type:", leaveTypeName);
 
-    if (!userDetails) return 0;
+        if (!userDetails) return 0;
 
-    const filtered = leaveHistory.filter(
-        l => l.leaveType === leaveTypeName
-    );
+        const filtered = leaveHistory.filter(
+            l => l.leaveType === leaveTypeName
+        );
 
         const used = filtered
             .filter(l =>
@@ -480,13 +481,13 @@ console.log("Leave History API:", leaveRes.data);
         }
 
         else if (
-    text.includes("privilege") ||
-    text.includes("privilege leave") ||
-    text === "pl"
-) {
-    botResponse =
-        `Your Privilege Leave balance is ${getLeaveBalanceByType("Privilege Leave")} Days`;
-}
+            text.includes("privilege") ||
+            text.includes("privilege leave") ||
+            text === "pl"
+        ) {
+            botResponse =
+                `Your Privilege Leave balance is ${getLeaveBalanceByType("Privilege Leave")} Days`;
+        }
         else if (text.includes("lop")) {
             botResponse =
                 "LOP Balance : 365 Days";
@@ -573,15 +574,15 @@ console.log("Leave History API:", leaveRes.data);
                 `Hi ${userName}, How can I help you today?`;
         }
 
-else if (
-    text.includes("manager") &&
-    !text.includes("skip")
-) {
-    botResponse = userDetails
-        ? `Manager Name: ${userDetails.managerName || userDetails.manager || "N/A"}
+        else if (
+            text.includes("manager") &&
+            !text.includes("skip")
+        ) {
+            botResponse = userDetails
+                ? `Manager Name: ${userDetails.managerName || userDetails.manager || "N/A"}
 Manager ID: ${userDetails.managerId || "N/A"}`
-        : "Manager details are not available.";
-}
+                : "Manager details are not available.";
+        }
         else if (
             text.includes("profile") ||
             text.includes("account") ||
@@ -655,9 +656,9 @@ Manager ID: ${userDetails.managerId || "N/A"}`
 
     return (
         <div
-    ref={chatbotRef}
-    className={`chatbot-panel ${chatOpen ? "open" : ""}`}
->
+            ref={chatbotRef}
+            className={`chatbot-panel ${chatOpen ? "open" : ""}`}
+        >
             <style>{`
                 @keyframes chatbot-mic-pulse {
                     0%, 100% { transform: scale(1); opacity: 1; }
@@ -673,7 +674,7 @@ Manager ID: ${userDetails.managerId || "N/A"}`
 
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                     <img
-                         src={`${process.env.PUBLIC_URL}/Logo-white.png`}
+                        src={`${process.env.PUBLIC_URL}/Logo-white.png`}
                         alt="Bizx Logo"
                         style={{
                             width: "28px",
@@ -745,41 +746,41 @@ Manager ID: ${userDetails.managerId || "N/A"}`
             </div> */}
 
             <div className="chatbot-body">
-    {messages.map((msg, index) => (
-        <div
-            key={index}
-            className={
-                msg.role === "user"
-                    ? "user-message"
-                    : "bot-message"
-            }
-        >
-            {typeof msg.content === "object" &&
-            msg.content.type === "menu" ? (
-                <>
-                    <div>{msg.content.title}</div>
+                {messages.map((msg, index) => (
+                    <div
+                        key={index}
+                        className={
+                            msg.role === "user"
+                                ? "user-message"
+                                : "bot-message"
+                        }
+                    >
+                        {typeof msg.content === "object" &&
+                            msg.content.type === "menu" ? (
+                            <>
+                                <div>{msg.content.title}</div>
 
-                    <div className="chatbot-links">
-                        {msg.content.items.map((item, i) => (
-                            <button
-                                key={i}
-                                className="chatbot-menu-link"
-                                onClick={() => navigate(item.path)}
-                            >
-                                {item.label}
-                            </button>
-                        ))}
+                                <div className="chatbot-links">
+                                    {msg.content.items.map((item, i) => (
+                                        <button
+                                            key={i}
+                                            className="chatbot-menu-link"
+                                            onClick={() => navigate(item.path)}
+                                        >
+                                            {item.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            </>
+                        ) : (
+                            msg.content
+                        )}
                     </div>
-                </>
-            ) : (
-                msg.content
-            )}
-        </div>
-    ))}
+                ))}
 
-    {/* Auto-scroll target */}
-    <div ref={messagesEndRef} />
-</div>
+                {/* Auto-scroll target */}
+                <div ref={messagesEndRef} />
+            </div>
 
             <div className="chatbot-footer">
                 <input
