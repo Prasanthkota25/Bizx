@@ -274,6 +274,7 @@ function ApplyLeave() {
 
 
   const { leaveTypes, holidays, balances } = useLeaveConfig();
+  console.log("Holidays:", holidays);
   const [errors, setErrors] = useState({});
 
   const [form, setForm] = useState({
@@ -448,6 +449,9 @@ function ApplyLeave() {
     while (current <= end) {
       const d = current.getDay();
       const dateStr = current.toISOString().split('T')[0];
+      console.log("Holiday Set:", holidays);
+console.log("Current Date:", dateStr);
+console.log("Is Holiday:", holidaySet.has(dateStr));
 
       if (d !== 0 && d !== 6 && !holidaySet.has(dateStr)) {
         count++;
