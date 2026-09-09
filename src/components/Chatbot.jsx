@@ -232,8 +232,9 @@ useEffect(() => {
                     `/leave/my/${username}`
                 );
 
-                setLeaveHistory(leaveRes.data || []);
+setLeaveHistory(leaveRes.data || []);
 
+console.log("Leave History API:", leaveRes.data);
             } catch (error) {
                 console.error("Error fetching user:", error);
             }
@@ -337,12 +338,24 @@ useEffect(() => {
         }
     };
 
-    const getLeaveBalanceByType = (leaveTypeName) => {
-        if (!userDetails) return 0;
+    // const getLeaveBalanceByType = (leaveTypeName) => {
+    //     if (!userDetails) return 0;
 
-        const filtered = leaveHistory.filter(
-            l => l.leaveType === leaveTypeName
-        );
+    //     const filtered = leaveHistory.filter(
+    //         l => l.leaveType === leaveTypeName
+    //     );
+
+    const getLeaveBalanceByType = (leaveTypeName) => {
+
+    console.log("Leave Types:", leaveTypes);
+    console.log("Leave History:", leaveHistory);
+    console.log("Checking Leave Type:", leaveTypeName);
+
+    if (!userDetails) return 0;
+
+    const filtered = leaveHistory.filter(
+        l => l.leaveType === leaveTypeName
+    );
 
         const used = filtered
             .filter(l =>
@@ -464,6 +477,15 @@ useEffect(() => {
             botResponse =
                 `Your Adoption Leave balance is ${getLeaveBalanceByType("Adoption Leave")} Days`;
         }
+
+        else if (
+    text.includes("privilege") ||
+    text.includes("privilege leave") ||
+    text === "pl"
+) {
+    botResponse =
+        `Your Privilege Leave balance is ${getLeaveBalanceByType("Privilege Leave")} Days`;
+}
         else if (text.includes("lop")) {
             botResponse =
                 "LOP Balance : 365 Days";
