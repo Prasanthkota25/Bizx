@@ -14,21 +14,14 @@ export function useLeaveConfig() {
       API.get('/api/leave-types'),          
       API.get(`/api/holidays/dates?year=${year}`) 
     ])
-.then(([ltRes, hdRes]) => {
-
-  console.log("Holiday API Response:", hdRes.data);
-
-  const types = ltRes.data;
-  const bal = {};
-
-  types.forEach(lt => {
-    bal[lt.name] = lt.defaultDays;
-  });
-
-  setLeaveTypes(types);
-  setHolidays(hdRes.data);
-  setBalances(bal);
-})
+    .then(([ltRes, hdRes]) => {
+      const types = ltRes.data;
+      const bal   = {};
+      types.forEach(lt => { bal[lt.name] = lt.defaultDays; });
+      setLeaveTypes(types);
+      setHolidays(hdRes.data);
+      setBalances(bal);
+    })
     .catch(err => setError(err.message))
     .finally(() => setLoading(false));
   }, []);
