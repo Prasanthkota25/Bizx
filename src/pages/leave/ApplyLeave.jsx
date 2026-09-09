@@ -213,29 +213,11 @@ const sortByLatest = (data) => {
 
 
 
-// const compareLatestLeave = (a, b) => {
-//   const ta = new Date(a.fromDate).getTime();
-//   const tb = new Date(b.fromDate).getTime();
-
-//   if (ta !== tb) {
-//     return tb - ta; // Latest date first
-//   }
-
-//   return (Number(b.id) || 0) - (Number(a.id) || 0);
-// };
-
-// const sortByLatest = (data) => {
-//   return [...data].sort(compareLatestLeave);
-// };
-
 function ApplyLeave() {
 
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('createdAt');
 
-
-//   const [order, setOrder] = useState('desc');
-// const [orderBy, setOrderBy] = useState('fromDate');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
@@ -386,19 +368,6 @@ function ApplyLeave() {
               ];
             }
 
-            // Manager approved cancellation
-            // if (item.status === "CANCELLED") {
-            //   return [
-            //     {
-            //       ...base,
-            //       requestType: "CANCEL",
-            //       displayStatus: "Approved"
-            //     }
-            //   ];
-            // }
-
-
-            // Manager approved cancellation
 if (item.status === "CANCELLED") {
   return [
     {
@@ -639,11 +608,30 @@ if (item.status === "CANCELLED") {
   };
 
 
-  // const handleSubmit = async (e) => {
+ 
 
-  //   e.preventDefault();
 
-  //   let newErrors = {};
+  const isLeaveAlreadyApplied = (fromDate, toDate) => {
+  return history.some(item => {
+    if (
+      !['PENDING', 'APPLIED', 'APPROVED', 'CANCEL_REQUESTED']
+        .includes(item.status)
+    ) {
+      return false;
+    }
+
+    const existingStart = new Date(item.fromDate);
+    const existingEnd = new Date(item.toDate);
+
+    const newStart = new Date(fromDate);
+    const newEnd = new Date(toDate);
+
+    return (
+      newStart <= existingEnd &&
+      newEnd >= existingStart
+    );
+  });
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -708,14 +696,6 @@ if (item.status === "CANCELLED") {
               try {
                 await API.put(`/leave/request-cancel/${cancelLeaveId}`);
 
-                // setHistory(prev =>
-                //   prev.map(item =>
-                //     item.id === cancelLeaveId
-                //       ? { ...item, status: 'CANCEL_REQUESTED' }
-                //       : item
-                //   )
-                // );
-
 
                 setHistory(prev => {
                   const original = prev.find(item => item.id === cancelLeaveId);
@@ -762,25 +742,8 @@ if (item.status === "CANCELLED") {
     }
 
 
-    const isDuplicate = history.some(item =>
-      item.leaveType === leaveType &&
-      item.fromDate === form.fromDate &&
-      item.toDate === form.toDate &&
-      [
-        'PENDING',
-        'APPLIED',
-        'APPROVED',
-        'CANCEL_REQUESTED'
-      ].includes(item.status)
-    );
 
-    if (isDuplicate) {
-      showSnackbar(
-        'You already applied leave for the same date range.',
-        'warning'
-      );
-      return;
-    }
+  
     if (leaveType !== 'LOP' && days === 0) {
       showSnackbar('Selected dates fall on weekends or holidays.', "warning");
       return;
@@ -1205,29 +1168,6 @@ if (item.status === "CANCELLED") {
 
 
 
-  // const fetchCCUsers = async (value) => {
-  //   if (value.trim().length < 3) {
-  //     setCcSuggestions([]);
-  //     return;
-  //   }
-
-  //   try {
-  //     const res = await fetch(
-  //       `http://localhost:8080/users/search?keyword=${encodeURIComponent(value)}`
-  //     );
-
-  //     const data = await res.json();
-
-  //     setCcSuggestions(data || []);
-  //   } catch (error) {
-  //     console.error("CC Search error:", error);
-  //     setCcSuggestions([]);
-  //   }
-  // };
-
-
-
-
   const fetchCCUsers = async (value) => {
     if (value.trim().length < 3) {
       setCcSuggestions([]);
@@ -1246,16 +1186,7 @@ if (item.status === "CANCELLED") {
     }
   };
 
-  // const handleCCChange = (e) => {
-  //   const value = e.target.value;
-
-
-  //   setCcSearch(value);
-
-  //   if (value.trim().length < 3) {
-  //     setCcSuggestions([]);
-  //   }
-  // };
+ 
   const handleCCChange = (e) => {
     const value = e.target.value.replace(/[^a-zA-Z\s]/g, "");
 
@@ -1368,25 +1299,6 @@ if (item.status === "CANCELLED") {
   };
 
 
-
-
-  // const getApproverRemarks = (item) => {
-
-
-  //   if (item.status === 'PENDING' || item.status === 'APPLIED') {
-  //     return '';
-  //   }
-
-  //   if (item.status === 'CANCEL_REQUESTED') {
-  //     return '';
-  //   }
-
-  //   if (item.status === 'APPROVED' || item.status === 'REJECTED' || item.status === 'CANCELLED') {
-  //     return item.approverRemarks || '-';
-  //   }
-
-  //   return '-';
-  // };
 
 
 
@@ -1682,26 +1594,81 @@ const sortedHistory = [...history].sort((a, b) => {
                 <div className="col-md-3 mb-3">
                   <label className="form-label">From Date <span className="required">*</span></label>
 
-                  <DatePicker
+                  {/* <DatePicker
                     disabled={isFormLocked}
-                    key={`from-${leaveType}-${form.fromDate}`}
+                    key={`from-${leaveType}-${form.fromDate}`} */}
 
+
+<DatePicker
+  key={`from-${leaveType}-${form.fromDate}-${form.toDate}`}
                     format="DD-MM-YYYY"
                     value={form.fromDate ? dayjs(form.fromDate) : null}
 
+                    // onChange={(newValue) => {
+                    //   setErrors(prev => ({ ...prev, fromDate: false }));
+
+                    //   setForm(prev => ({
+                    //     ...prev,
+                    //     fromDate:
+                    //       newValue && newValue.isValid()
+                    //         ? newValue.format("YYYY-MM-DD")
+                    //         : "",
+                    //     toDate: ""
+                    //   }));
+
+                    // }}
                     onChange={(newValue) => {
-                      setErrors(prev => ({ ...prev, fromDate: false }));
+  setErrors(prev => ({ ...prev, fromDate: false }));
 
-                      setForm(prev => ({
-                        ...prev,
-                        fromDate:
-                          newValue && newValue.isValid()
-                            ? newValue.format("YYYY-MM-DD")
-                            : "",
-                        toDate: ""
-                      }));
+  const selectedFromDate =
+    newValue && newValue.isValid()
+      ? newValue.format("YYYY-MM-DD")
+      : "";
 
-                    }}
+  // if (
+  //   form.toDate &&
+  //   selectedFromDate &&
+  //   isLeaveAlreadyApplied(selectedFromDate, form.toDate)
+  // ) {
+  //   showSnackbar(
+  //     "Leave already applied for selected date",
+  //     "error"
+  //   );
+  //   return;
+  // }
+
+  if (
+  form.toDate &&
+  selectedFromDate &&
+  isLeaveAlreadyApplied(
+    selectedFromDate,
+    form.toDate
+  )
+) {
+  showSnackbar(
+    "Leave already applied for selected date",
+    "error"
+  );
+
+  setDays(0);
+
+  setTimeout(() => {
+    setForm(prev => ({
+      ...prev,
+      fromDate: "",
+      toDate: ""
+    }));
+  }, 0);
+
+  return;
+}
+
+  setForm(prev => ({
+    ...prev,
+    fromDate: selectedFromDate,
+    toDate: ""
+  }));
+}}
                     slotProps={{
                       textField: {
                         fullWidth: true,
@@ -1716,29 +1683,98 @@ const sortedHistory = [...history].sort((a, b) => {
                   <label className="form-label">To Date <span className="required">*</span></label>
 
 
-                  <DatePicker
+                  {/* <DatePicker
                     disabled={isFormLocked}
-                    key={`to-${leaveType}-${form.toDate}`}
+                    key={`to-${leaveType}-${form.toDate}`} */}
+
+                    <DatePicker
+  key={`to-${leaveType}-${form.fromDate}-${form.toDate}`}
 
                     format="DD-MM-YYYY"
                     value={form.toDate ? dayjs(form.toDate) : null}
                     shouldDisableDate={shouldDisableToDate}
+                    // onChange={(newValue) => {
+                    //   setErrors(prev => ({ ...prev, toDate: false }));
+                    //   if (!leaveType) {
+                    //     showSnackbar("Please select Leave Type first", "warning");
+                    //     return;
+                    //   }
+
+                    //   setForm(prev => ({
+                    //     ...prev,
+                    //     toDate:
+                    //       newValue && newValue.isValid()
+                    //         ? newValue.format("YYYY-MM-DD")
+                    //         : ""
+                    //   }));
+                    // }}
+
                     onChange={(newValue) => {
-                      setErrors(prev => ({ ...prev, toDate: false }));
-                      if (!leaveType) {
-                        showSnackbar("Please select Leave Type first", "warning");
-                        return;
-                      }
+  setErrors(prev => ({ ...prev, toDate: false }));
 
-                      setForm(prev => ({
-                        ...prev,
-                        toDate:
-                          newValue && newValue.isValid()
-                            ? newValue.format("YYYY-MM-DD")
-                            : ""
-                      }));
-                    }}
+  if (!leaveType) {
+    showSnackbar("Please select Leave Type first", "warning");
+    return;
+  }
 
+  const selectedToDate =
+    newValue && newValue.isValid()
+      ? newValue.format("YYYY-MM-DD")
+      : "";
+
+  // if (
+  //   form.fromDate &&
+  //   selectedToDate &&
+  //   isLeaveAlreadyApplied(
+  //     form.fromDate,
+  //     selectedToDate
+  //   )
+  // ) {
+  //   showSnackbar(
+  //     "Leave already applied for selected date",
+  //     "error"
+  //   );
+
+  //   setForm(prev => ({
+  //     ...prev,
+  //     toDate: ""
+  //   }));
+
+  //   return;
+  // }
+
+
+
+  if (
+  form.fromDate &&
+  selectedToDate &&
+  isLeaveAlreadyApplied(
+    form.fromDate,
+    selectedToDate
+  )
+) {
+  showSnackbar(
+    "Leave already applied for selected date",
+    "error"
+  );
+
+  setDays(0);
+
+  setTimeout(() => {
+    setForm(prev => ({
+      ...prev,
+      fromDate: "",
+      toDate: ""
+    }));
+  }, 0);
+
+  return;
+}
+  setForm(prev => ({
+    ...prev,
+    toDate: selectedToDate
+  }));
+}}
                     slotProps={{
                       textField: {
                         fullWidth: true,
