@@ -459,8 +459,6 @@ function Navbar() {
 
     const drawerList = (
 
-
-        
         <Box sx={{ width: 300 }} role="presentation">
               <ListItem disablePadding>
 
