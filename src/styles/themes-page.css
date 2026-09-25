@@ -24,7 +24,8 @@ body.misty .leave-card,
 body.aqua .leave-card,
 body.mustang .profile-container,
 body.misty .profile-container,
-body.aqua .profile-container {
+body.aqua .profile-container ,
+.incident-card,.incidentlist-card {
   background: white !important;
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);

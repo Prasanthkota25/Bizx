@@ -1495,7 +1495,6 @@ console.log("Is Holiday:", holidaySet.has(dateStr));
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <div className="container-fluid projectAccounting leave-page">
           <div className="leave-card">
-
             <div className="page-header">
               <h2>Apply Leave</h2>
               <button type="button" className="back-btn" onClick={() => window.history.back()}>

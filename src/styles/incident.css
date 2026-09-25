@@ -16,3 +16,116 @@
 
 }
 
+
+.incidentlist-card {
+  border-radius: 5px !important;
+  padding: 12px 24px;
+  margin-top: 0.6%;
+
+  min-height: 80vh;
+
+  background: rgba(255, 255, 255, 0.88);
+
+  border: 1px solid rgba(0, 0, 0, 0.08);
+
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+
+
+.incident-row .col-md-3 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.incident-row .MuiFormControl-root {
+  width: 100%;
+}
+
+.page-title {
+
+  margin-bottom: 20px;
+
+}
+
+.back-btn {
+  border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  color: #0d6efd;
+}
+
+
+
+
+.incident-row .MuiOutlinedInput-root {
+  height: 38px !important;
+}
+
+.incident-row .MuiSelect-select {
+  height: 38px !important;
+  line-height: 38px !important;
+  padding: 0 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  box-sizing: border-box !important;
+}
+
+.incident-row .MuiOutlinedInput-notchedOutline {
+  border-color: #ced4da !important;
+}
+
+
+
+
+
+.incidentbtn-area {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 90px !important;
+  margin-bottom: 20px;
+}
+
+.incidentreset-btn,
+.incidentsubmit-btn {
+  border: none;
+  min-width: 90px;
+  height: 32px;
+  border-radius: 3px;
+  font-size: 12px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.incidentreset-btn {
+  background: #878787;
+}
+
+.incidentreset-btn:hover {
+  background: #836b6b;
+}
+
+.incidentsubmit-btn {
+  background: #102d70;
+}
+
+.incidentsubmit-btn:hover {
+  background: #1947b3;
+}
+
+.btn-icon {
+  font-size: 13px;
+}
