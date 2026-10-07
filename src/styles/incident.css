@@ -129,3 +129,16 @@
 .btn-icon {
   font-size: 13px;
 }
+
+
+
+.attachment-label {
+  color: #a00000;
+  font-weight: 700;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+input {
+    padding: 5px 5px  !important;
+}
